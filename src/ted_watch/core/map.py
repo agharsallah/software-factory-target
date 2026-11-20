@@ -1,12 +1,11 @@
 """Pure mapping functions from raw TED API data to internal models."""
 
 from datetime import date
-from typing import Any
 
 from .model import LotDeadline, Notice, RawNotice
 
 
-def _parse_date(value: Any) -> date | None:
+def _parse_date(value: object) -> date | None:
     """Parse date from various formats used in TED API."""
     if value is None:
         return None
@@ -21,7 +20,16 @@ def _parse_date(value: Any) -> date | None:
     return None
 
 
-def _parse_lots(raw_lots: list[dict]) -> list[LotDeadline]:
+def _optional_str(value: object) -> str | None:
+    """Return ``value`` as a string, or ``None`` when absent."""
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
+def _parse_lots(raw_lots: list[dict[str, object]]) -> list[LotDeadline]:
     """Extract and normalize lot deadline information."""
     result: list[LotDeadline] = []
     for lot in raw_lots:
@@ -38,9 +46,12 @@ def _parse_lots(raw_lots: list[dict]) -> list[LotDeadline]:
             LotDeadline(
                 lot_id=str(lot_id),
                 deadline=deadline,
-                deadline_change_reason_code=lot.get("deadlineChangeReasonCode")
-                or lot.get("changeReasonCode"),
-                deadline_change_reason=lot.get("deadlineChangeReason") or lot.get("changeReason"),
+                deadline_change_reason_code=_optional_str(
+                    lot.get("deadlineChangeReasonCode") or lot.get("changeReasonCode")
+                ),
+                deadline_change_reason=_optional_str(
+                    lot.get("deadlineChangeReason") or lot.get("changeReason")
+                ),
             )
         )
     return result
