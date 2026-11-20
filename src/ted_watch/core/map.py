@@ -69,5 +69,10 @@ def map_raw_to_notice(raw: RawNotice) -> Notice:
         lots=lots,
         change_reason_code=raw.change_reason_code,
         change_reason=raw.change_reason,
+        notice_identifier=raw.notice_identifier,
+        notice_version=raw.notice_version,
+        publication_number=raw.publication_number,
+        procedure_identifier=raw.procedure_identifier,
+        change_notice_version_identifier=raw.change_notice_version_identifier,
         url=raw.url,
     )

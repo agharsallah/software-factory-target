@@ -2,7 +2,7 @@
 
 from datetime import date
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class LotDeadline(BaseModel):
@@ -20,6 +20,8 @@ class LotDeadline(BaseModel):
 
 class RawNotice(BaseModel):
     """Raw notice as received from TED search API v3."""
+
+    model_config = ConfigDict(extra="allow")
 
     notice_id: str = Field(
         ..., validation_alias="noticeId", description="Unique notice identifier (TED ID)"
@@ -58,11 +60,30 @@ class RawNotice(BaseModel):
         validation_alias="changeReason",
         description="Human-readable deadline change reason at notice level",
     )
+    notice_identifier: str | None = Field(
+        None, validation_alias="noticeIdentifier", description="TED notice UUID identifier"
+    )
+    notice_version: str | int | None = Field(
+        None, validation_alias="noticeVersion", description="TED notice version (2-digit)"
+    )
+    publication_number: str | None = Field(
+        None, validation_alias="publicationNumber", description="TED publication number"
+    )
+    procedure_identifier: str | None = Field(
+        None, validation_alias="procedureIdentifier", description="Shared procedure identifier"
+    )
+    change_notice_version_identifier: str | None = Field(
+        None,
+        validation_alias="changeNoticeVersionIdentifier",
+        description="Pointer to predecessor notice (UUID+version or publication number)",
+    )
     url: str | None = Field(None, description="Link to full notice on TED")
 
 
 class Notice(BaseModel):
     """Internal normalized notice representation."""
+
+    model_config = ConfigDict(extra="allow")
 
     notice_id: str = Field(..., description="Unique notice identifier (TED ID)")
     title: str = Field(..., description="Notice title")
@@ -80,5 +101,12 @@ class Notice(BaseModel):
     )
     change_reason: str | None = Field(
         None, description="Human-readable deadline change reason at notice level"
+    )
+    notice_identifier: str | None = Field(None, description="TED notice UUID identifier")
+    notice_version: str | int | None = Field(None, description="TED notice version (2-digit)")
+    publication_number: str | None = Field(None, description="TED publication number")
+    procedure_identifier: str | None = Field(None, description="Shared procedure identifier")
+    change_notice_version_identifier: str | None = Field(
+        None, description="Pointer to predecessor notice (UUID+version or publication number)"
     )
     url: str | None = Field(None, description="Link to full notice on TED")
