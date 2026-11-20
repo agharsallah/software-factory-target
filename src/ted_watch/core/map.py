@@ -40,8 +40,7 @@ def _parse_lots(raw_lots: list[dict]) -> list[LotDeadline]:
                 deadline=deadline,
                 deadline_change_reason_code=lot.get("deadlineChangeReasonCode")
                 or lot.get("changeReasonCode"),
-                deadline_change_reason=lot.get("deadlineChangeReason")
-                or lot.get("changeReason"),
+                deadline_change_reason=lot.get("deadlineChangeReason") or lot.get("changeReason"),
             )
         )
     return result

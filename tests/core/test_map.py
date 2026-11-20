@@ -8,11 +8,7 @@ from src.ted_watch.core.map import map_raw_to_notice
 from src.ted_watch.core.model import RawNotice
 
 FIXTURE_DIR = (
-    Path(__file__).parent.parent.parent
-    / "fixtures"
-    / "connectors"
-    / "ted_api"
-    / "fixtures"
+    Path(__file__).parent.parent.parent / "fixtures" / "connectors" / "ted_api" / "fixtures"
 )
 
 
@@ -24,12 +20,14 @@ def load_fixture(name: str) -> RawNotice:
     return RawNotice.model_validate(data)
 
 
-@pytest.fixture(params=[
-    "notice_contract_with_lots.json",
-    "notice_planning_without_lots.json",
-    "notice_contract_change_reason.json",
-    "notice_contract_alternate_fields.json",
-])
+@pytest.fixture(
+    params=[
+        "notice_contract_with_lots.json",
+        "notice_planning_without_lots.json",
+        "notice_contract_change_reason.json",
+        "notice_contract_alternate_fields.json",
+    ]
+)
 def raw_notice(request) -> RawNotice:
     """Parametrized fixture providing RawNotice instances."""
     return load_fixture(request.param)

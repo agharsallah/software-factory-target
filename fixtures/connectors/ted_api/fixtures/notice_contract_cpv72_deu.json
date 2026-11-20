@@ -1,0 +1,23 @@
+{
+  "noticeId": "720002-2024",
+  "title": "Software development services",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-06-30",
+  "country": "DE",
+  "authorityName": "Bundesministerium des Innern",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": ["72212000", "72267000"],
+  "lots": [
+    {
+      "id": "LOT-DE-1",
+      "deadline": "2024-06-30",
+      "deadlineChangeReasonCode": "COR",
+      "deadlineChangeReason": "Correction of erroneous deadline"
+    }
+  ],
+  "changeReasonCode": "COR",
+  "changeReason": "Correction of erroneous deadline",
+  "url": "https://ted.europa.eu/notice/720002-2024"
+}
