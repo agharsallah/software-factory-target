@@ -1,0 +1,30 @@
+{
+  "noticeId": "888001-2024",
+  "title": "Cleaning services framework",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-01",
+  "deadline": "2024-07-01",
+  "country": "DEU",
+  "authorityName": "Stadtbibliothek",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DEU",
+  "cpvCodes": ["90910000"],
+  "lots": [
+    {
+      "id": "LOT-C1",
+      "deadline": "2024-07-01",
+      "deadlineChangeReasonCode": "cor-pub",
+      "deadlineChangeReason": "Publication correction"
+    }
+  ],
+  "changeReasonCode": "cor-pub",
+  "changeReason": "Publication correction",
+  "url": "https://ted.europa.eu/notice/888001-2024",
+  "contactName": "Jane Doe",
+  "contactEmail": "jane.doe@stadtbibliothek.example",
+  "contactPhone": "+49 30 1234 5678",
+  "email": "procurement@buyer.example",
+  "phone": "+48 22 123 45 67",
+  "buyer-email": "tenders@example.org",
+  "buyer-phone": "0049 89 1234567"
+}

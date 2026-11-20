@@ -1,0 +1,23 @@
+{
+  "noticeId": "610001-2024",
+  "title": "Suspension of tender procedure during review",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-12",
+  "deadline": "2024-06-20",
+  "country": "DE",
+  "authorityName": "Bundesagentur fuer Arbeit",
+  "authorityCity": "Nuernberg",
+  "authorityCountry": "DE",
+  "cpvCodes": ["79600000"],
+  "lots": [
+    {
+      "id": "LOT-S1",
+      "deadline": "2024-06-20",
+      "deadlineChangeReasonCode": "susp-review",
+      "deadlineChangeReason": "Procedure suspended pending review"
+    }
+  ],
+  "changeReasonCode": "susp-review",
+  "changeReason": "Procedure suspended pending review",
+  "url": "https://ted.europa.eu/notice/610001-2024"
+}
