@@ -2,7 +2,8 @@
 
 Snapshots are split by procedure-identifier so a change and its predecessor
 stay on the same side. Each §3.4 case tag appears in both ``fixtures/visible``
-and ``fixtures/holdout``.
+and ``fixtures/holdout``. Every event emitted from those notices is validated
+against ``core/event.schema.json``.
 
 §3.4 case tags (README, link-resolution coverage):
 
@@ -20,10 +21,46 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from typing import Any
 
-from ..cli import _load_notices
+import jsonschema
+
+from ..cli import _build_events, _load_notices
+
+_SCHEMA_PATH = Path(__file__).resolve().parents[1] / "core" / "event.schema.json"
+
+
+def load_schema() -> dict[str, Any]:
+    """Load the deadline-change event JSON Schema."""
+    return json.loads(_SCHEMA_PATH.read_text(encoding="utf-8"))
+
+
+def validate_event(event: Mapping[str, Any], schema: Mapping[str, Any] | None = None) -> None:
+    """Validate ``event`` against the deadline-change schema.
+
+    Raises ``ValueError`` when the event does not match. A missing timezone
+    offset or a kind outside the enum fails.
+    """
+    document = schema if schema is not None else load_schema()
+    validator = jsonschema.Draft202012Validator(document)
+    errors = sorted(validator.iter_errors(event), key=lambda err: list(err.absolute_path))
+    if errors:
+        raise ValueError(errors[0].message)
+
+
+def validate_events(events: Iterable[Mapping[str, Any]]) -> list[str]:
+    """Return schema errors for ``events``. Empty when every event is valid."""
+    schema = load_schema()
+    errors: list[str] = []
+    for index, event in enumerate(events):
+        try:
+            validate_event(event, schema)
+        except ValueError as exc:
+            errors.append(f"event {index}: {exc}")
+    return errors
+
 
 SECTION_3_4_CASE_TAGS: tuple[str, ...] = (
     "form_a_uuid_version",
@@ -175,11 +212,12 @@ def _grouping_error(path: Path) -> str | None:
 
 
 def run(fixtures: str | Path) -> int:
-    """Load notices from ``fixtures`` and report whether they parse.
+    """Load notices from ``fixtures`` and validate every emitted event.
 
     ``fixtures`` may be a JSON file, a flat directory, or a directory grouped
     by procedure-identifier (``fixtures/visible`` or ``fixtures/holdout``).
-    Returns 0 when every notice parses, 1 otherwise.
+    Returns 0 when every notice parses and every emitted event matches the
+    schema, 1 otherwise.
     """
     path = Path(fixtures)
     if not path.exists():
@@ -207,10 +245,21 @@ def run(fixtures: str | Path) -> int:
     procedures = procedure_identifiers(path)
     tags = case_tags(path)
     tag_text = ",".join(sorted(tags)) if tags else "-"
+    events = _build_events(notices)
+    event_errors = validate_events(events)
+    if event_errors:
+        print(
+            f"conformance: {len(event_errors)} event(s) failed schema validation",
+            file=sys.stderr,
+        )
+        for message in event_errors:
+            print(f"conformance: {message}", file=sys.stderr)
+        return 1
     print(
         f"conformance: loaded {len(notices)} notice(s) from {path} "
         f"({len(procedures)} procedure(s), tags={tag_text})"
     )
+    print(f"conformance: validated {len(events)} event(s) against event schema")
     return 0
 
 

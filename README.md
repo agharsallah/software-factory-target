@@ -19,7 +19,7 @@ No TED or EU logos are used.
 - `core/link.py` — `resolve_predecessor` for both TED pointer forms (UUID+version and publication number), one hop per call.
 - `core/dedupe.py` — stable `event_id` and an exactly-once `Dedupe` store. Identity is procedure, lot, kind, previous notice, current notice. Deadlines are not part of the id.
 - `core/source.py` — `load_source` reads `connectors/ted_api/source.yaml` with a safe YAML loader and rejects missing required keys.
-- `cli.py` — fixture mode: load JSON, map, filter, write deadline-change JSONL. `previous` is always null. It does not call link, dedupe, or `load_source`.
+- `cli.py` — fixture mode: load JSON, map, filter, write deadline-change JSONL. `previous` is always null and `unresolved` is true. It does not call link, dedupe, or `load_source`.
 - `tenders/` — thin entry that calls the same CLI.
 
 ### What is next

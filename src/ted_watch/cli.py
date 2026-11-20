@@ -160,6 +160,7 @@ def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
                         "kind": lot_kind,
                         "lot": lot.lot_id,
                         "previous": None,
+                        "unresolved": True,
                         "current": current.isoformat() if current is not None else None,
                         "current_utc": (
                             current.isoformat() + "T00:00:00Z" if current is not None else None
@@ -179,6 +180,7 @@ def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
                     "kind": kind,
                     "lot": None,
                     "previous": None,
+                    "unresolved": True,
                     "current": current.isoformat(),
                     "current_utc": current.isoformat() + "T00:00:00Z",
                     "source": notice.url if notice.url else "ted.europa.eu",

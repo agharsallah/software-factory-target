@@ -1,0 +1,17 @@
+{
+  "event": "deadline_changed",
+  "kind": "not-a-kind",
+  "lot": "LOT-001",
+  "previous": {
+    "notice": "719096-2026",
+    "deadline": "2026-03-01T00:00:00Z"
+  },
+  "current": {
+    "notice": "810002-2024",
+    "deadline": "2026-04-15T00:00:00Z"
+  },
+  "current_utc": "2026-04-15T00:00:00Z",
+  "source": "ted.europa.eu",
+  "coverage": "EU tenders",
+  "attribution": "TED (ted.europa.eu)"
+}

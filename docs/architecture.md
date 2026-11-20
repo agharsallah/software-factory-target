@@ -39,13 +39,13 @@ Lookup is direct, then a scan of candidate keys on each indexed notice (`notice_
 
 Not a module. Nothing compares a predecessor deadline to the current deadline.
 
-The CLI stand-in is `_build_events` in `ted_watch/cli.py`. For each mapped notice it emits a row when a change-reason code is present and not `none`, and a current deadline exists. Per-lot reason wins over the notice reason. `previous` is always `null`. It does not load a predecessor and does not call `resolve_predecessor`.
+The CLI stand-in is `_build_events` in `ted_watch/cli.py`. For each mapped notice it emits a row when a change-reason code is present and not `none`, and a current deadline exists. Per-lot reason wins over the notice reason. `previous` is always `null` and `unresolved` is `true`. It does not load a predecessor and does not call `resolve_predecessor`.
 
 Reason text selects the event name: substring `susp` → `suspension`, substring `cancel` → `cancellation`, otherwise `deadline_change`.
 
 ### event
 
-The CLI writes one JSON object per line. Fields: `event`, `kind`, `lot`, `previous`, `current`, `current_utc` (`YYYY-MM-DDT00:00:00Z`), `source` (notice URL, or `ted.europa.eu`), `coverage` (`EU tenders`), `attribution` (`TED (ted.europa.eu)`). The CLI hardcodes coverage and attribution; it does not read `source.yaml`.
+The CLI writes one JSON object per line. Fields: `event`, `kind`, `lot`, `previous`, `unresolved`, `current`, `current_utc` (`YYYY-MM-DDT00:00:00Z`), `source` (notice URL, or `ted.europa.eu`), `coverage` (`EU tenders`), `attribution` (`TED (ted.europa.eu)`). The CLI hardcodes coverage and attribution; it does not read `source.yaml`.
 
 `core/dedupe.py` can stamp a stable id and drop repeats. `event_id` is SHA-256 over procedure, lot, kind, previous notice, and current notice, in that order. Deadline strings are not part of the id. `Dedupe` remembers ids already emitted and yields each logical change once, in any order. The CLI does not call it, and CLI rows have no `procedure` or notice-id fields, so they are not yet dedupe-ready.
 
@@ -88,4 +88,4 @@ Other offline checks, not part of that list:
 - `tests/core/test_source.py` loads `connectors/ted_api/source.yaml` and rejects missing required keys.
 - `tests/core/test_dedupe.py` checks id stability, order independence, and exactly-once emit.
 
-No property tests. No schema validator for the JSONL event beyond the `Event` TypedDict in `dedupe.py`.
+No property tests. Emitted JSONL is checked against `core/event.schema.json` by the conformance runner.

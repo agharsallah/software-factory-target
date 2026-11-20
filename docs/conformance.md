@@ -18,4 +18,4 @@ The cases that exist today are link-resolution cases in `tests/core/test_link.py
 
 Map, source-loader, and dedupe checks live under `tests/core/` as well. They are not conformance-package cases.
 
-Not covered anywhere: a conformance runner, property tests, and an event-schema check beyond the `Event` TypedDict.
+The runner validates every emitted event against `core/event.schema.json`. Not covered: property tests.

@@ -9,6 +9,7 @@ description = "EU tender deadline-change watch on TED"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "jsonschema>=4.18",
     "pydantic>=2.0",
     "pyyaml>=6.0.3",
 ]

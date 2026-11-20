@@ -1,0 +1,15 @@
+{
+  "event": "deadline_changed",
+  "kind": "update-add",
+  "lot": "LOT-100",
+  "previous": null,
+  "unresolved": true,
+  "current": {
+    "notice": "999888-2024",
+    "deadline": "2024-03-20"
+  },
+  "current_utc": "2024-03-20T00:00:00Z",
+  "source": "https://ted.europa.eu/notice/999888-2024",
+  "coverage": "EU tenders",
+  "attribution": "TED (ted.europa.eu)"
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ted-watch.local/schemas/event.schema.json",
+  "title": "DeadlineChangedEvent",
+  "description": "deadline_changed event. previous and current are {notice, deadline}. previous may be null only with an explicit unresolved flag. current_utc and datetime deadlines require a timezone offset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event",
+    "kind",
+    "lot",
+    "previous",
+    "current",
+    "current_utc",
+    "source",
+    "coverage",
+    "attribution"
+  ],
+  "properties": {
+    "event": {
+      "description": "Event name. deadline_changed is the deadline-change event.",
+      "type": "string",
+      "enum": ["deadline_changed", "deadline_change", "suspension", "cancellation"]
+    },
+    "kind": {
+      "description": "Change-reason code.",
+      "type": "string",
+      "enum": [
+        "update-add",
+        "cor-buy",
+        "cor-pub",
+        "info-release",
+        "susp-review",
+        "cancel-intent",
+        "none",
+        "EXT",
+        "COR",
+        "NONE"
+      ]
+    },
+    "lot": {
+      "description": "Lot identifier, or null when the deadline is notice-wide.",
+      "type": ["string", "null"]
+    },
+    "previous": {
+      "description": "Predecessor {notice, deadline}, a notice id, or null when unresolved.",
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "minLength": 1},
+        {"type": "object"}
+      ],
+      "properties": {
+        "notice": {"type": "string", "minLength": 1},
+        "deadline": {"$ref": "#/$defs/deadline"}
+      },
+      "required": ["notice", "deadline"],
+      "additionalProperties": false
+    },
+    "current": {
+      "description": "Current {notice, deadline}, or a deadline string on unlinked rows.",
+      "anyOf": [
+        {"type": "string", "minLength": 1},
+        {"type": "object"}
+      ],
+      "properties": {
+        "notice": {"type": "string", "minLength": 1},
+        "deadline": {"$ref": "#/$defs/deadline"}
+      },
+      "required": ["notice", "deadline"],
+      "additionalProperties": false
+    },
+    "current_utc": {
+      "description": "Current deadline as a UTC timestamp with an explicit offset.",
+      "$ref": "#/$defs/offsetDateTime"
+    },
+    "source": {"type": "string", "minLength": 1},
+    "coverage": {"type": "string", "minLength": 1},
+    "attribution": {"type": "string", "minLength": 1},
+    "unresolved": {
+      "description": "Explicit flag. Required and true when previous is null.",
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"previous": {"type": "null"}},
+        "required": ["previous"]
+      },
+      "then": {
+        "required": ["unresolved"],
+        "properties": {"unresolved": {"const": true}}
+      }
+    }
+  ],
+  "$defs": {
+    "offsetDateTime": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})$",
+      "description": "ISO-8601 datetime with a timezone offset (Z or ±HH:MM). A missing offset is invalid."
+    },
+    "deadline": {
+      "description": "Deadline as a date or as a datetime with an explicit offset.",
+      "anyOf": [
+        {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        {"$ref": "#/$defs/offsetDateTime"}
+      ]
+    }
+  }
+}

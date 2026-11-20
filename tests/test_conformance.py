@@ -1,14 +1,20 @@
 """Tests for the visible/holdout conformance fixture split."""
 
+import json
 from pathlib import Path
 
 import pytest
+from src.ted_watch.cli import _build_events
 from src.ted_watch.conformance.runner import (
     SECTION_3_4_CASE_TAGS,
     case_tags,
+    load_notices,
+    load_schema,
     main,
     notice_records,
     procedure_identifiers,
+    validate_event,
+    validate_events,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -99,3 +105,102 @@ def test_change_and_predecessor_share_a_procedure() -> None:
 def test_conformance_runner_accepts_fixtures_argument(fixtures_dir: Path) -> None:
     """The runner can be pointed at either split directory via --fixtures."""
     assert main(["--fixtures", str(fixtures_dir)]) == 0
+
+
+EVENTS = REPO_ROOT / "fixtures" / "events"
+SAMPLE = REPO_ROOT / "sample.jsonl"
+
+_VALID_EVENTS = (
+    "valid_deadline_changed.json",
+    "valid_previous_unresolved.json",
+)
+_INVALID_EVENTS = (
+    "missing_offset.json",
+    "bad_kind.json",
+)
+
+
+def _load_event(name: str) -> dict:
+    """Load one event fixture."""
+    return json.loads((EVENTS / name).read_text(encoding="utf-8"))
+
+
+def test_event_schema_describes_deadline_changed_event() -> None:
+    """The schema names the deadline_changed fields, kind enum, and unresolved flag."""
+    schema = load_schema()
+    again = load_schema()
+    assert schema == again
+    assert schema is not again
+    props = schema["properties"]
+    for name in (
+        "event",
+        "kind",
+        "lot",
+        "previous",
+        "current",
+        "current_utc",
+        "source",
+        "coverage",
+        "attribution",
+        "unresolved",
+    ):
+        assert name in props
+    assert "enum" in props["kind"]
+    assert "deadline_changed" in props["event"]["enum"]
+    assert props["previous"]["properties"]["notice"]["type"] == "string"
+    assert "deadline" in props["previous"]["properties"]
+    assert props["current"]["properties"]["notice"]["type"] == "string"
+    assert "deadline" in props["current"]["properties"]
+    assert {"type": "null"} in props["previous"]["anyOf"]
+
+
+@pytest.mark.parametrize("name", _VALID_EVENTS)
+def test_valid_event_fixture_passes(name: str) -> None:
+    """A valid fixture event passes schema validation."""
+    event = _load_event(name)
+    copy = _load_event(name)
+    validate_event(event)
+    assert event == copy
+    assert event is not copy
+
+
+@pytest.mark.parametrize("name", _INVALID_EVENTS)
+def test_invalid_event_fixture_fails(name: str) -> None:
+    """A missing offset or a bad kind fails schema validation."""
+    event = _load_event(name)
+    with pytest.raises(ValueError):
+        validate_event(event)
+
+
+def test_previous_null_requires_unresolved_flag() -> None:
+    """previous may be null only with an explicit unresolved flag."""
+    event = _load_event("valid_previous_unresolved.json")
+    validate_event(event)
+    missing = dict(event)
+    del missing["unresolved"]
+    with pytest.raises(ValueError):
+        validate_event(missing)
+    assert missing is not event
+
+
+@pytest.mark.parametrize("fixtures_dir", [VISIBLE, HOLDOUT, FLAT])
+def test_emitted_events_match_schema(fixtures_dir: Path) -> None:
+    """Every event emitted from a fixture set matches the schema."""
+    notices = load_notices(fixtures_dir)
+    events = _build_events(notices)
+    assert events
+    assert validate_events(events) == []
+    for event in events:
+        validate_event(event)
+        assert event["current_utc"].endswith("Z") or "+" in event["current_utc"]
+
+
+def test_sample_jsonl_events_match_schema() -> None:
+    """The committed sample is a set of schema-valid emitted events."""
+    lines = [line for line in SAMPLE.read_text(encoding="utf-8").splitlines() if line.strip()]
+    events = [json.loads(line) for line in lines]
+    assert events
+    assert validate_events(events) == []
+    for event in events:
+        assert event["previous"] is None
+        assert event["unresolved"] is True
