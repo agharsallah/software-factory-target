@@ -17,9 +17,10 @@ No TED or EU logos are used.
 - `core/model.py` — `RawNotice`, `Notice`, `LotDeadline`, and the `Source` descriptor (budget, branding, reuse, paging, personal-data fields).
 - `core/map.py` — pure `map_raw_to_notice`. No network, no side effects.
 - `core/link.py` — `resolve_predecessor` for both TED pointer forms (UUID+version and publication number), one hop per call.
+- `core/diff.py` — `diff_notices` emits `procedure_suspended` for `susp-review` and `cancellation_intended` for `cancel-intent`. Never `deadline_changed`. No personal data.
 - `core/dedupe.py` — stable `event_id` and an exactly-once `Dedupe` store. Identity is procedure, lot, kind, previous notice, current notice. Deadlines are not part of the id.
 - `core/source.py` — `load_source` reads `connectors/ted_api/source.yaml` with a safe YAML loader and rejects missing required keys.
-- `cli.py` — fixture mode: load JSON, map, filter, write deadline-change JSONL. `previous` is always null. It does not call link, dedupe, or `load_source`.
+- `cli.py` — fixture mode: load JSON, map, filter, write JSONL. `susp-review` and `cancel-intent` go through `diff_notices`. Other rows are deadline changes with `previous` always null. It does not call link, dedupe, or `load_source`.
 - `tenders/` — thin entry that calls the same CLI.
 
 ### What is next
@@ -27,7 +28,7 @@ No TED or EU logos are used.
 Named by the pipeline and by `source.yaml`, and not in the tree yet:
 
 - **list** and **fetch** of the TED search API. `source.yaml` records the endpoint, iteration-token paging, and the polite budget. No HTTP client exists.
-- **diff** of a linked predecessor deadline against the current notice. The CLI emits an event when a change-reason code is set; it does not compare two deadlines.
+- **deadline compare** in diff for the other reason codes (`update-add`, `cor-buy`, `cor-pub`, `info-release`). Suspension and intended cancellation already have their own events.
 - Calling link resolution and dedupe from the event path.
 - A conformance kit under `conformance/`. That package is a docstring only.
 
@@ -61,7 +62,7 @@ Every top-level module under `src/`. Nothing else is a product module.
 
 - `ted_watch/` — EU tender deadline-change watch package (`__version__` 0.1.0).
 - `connectors/` — connectors package for external API integrations. The only connector is `connectors/ted_api/` (source metadata in `source.yaml`; no fetch code).
-- `core/` — core domain logic for tender watching: `model.py`, `map.py`, `link.py`, `source.py`, `dedupe.py`.
+- `core/` — core domain logic for tender watching: `model.py`, `map.py`, `link.py`, `diff.py`, `source.py`, `dedupe.py`.
 - `conformance/` — conformance checking for tender data. Docstring only; no cases and no checker.
 - CLI — `ted_watch/cli.py` writes a sample of deadline changes as JSONL. `tenders/` re-exports that entry point.
 
