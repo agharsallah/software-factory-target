@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "ted-watch"
 version = "0.1.0"
@@ -27,9 +31,14 @@ ignore = []
 quote-style = "double"
 indent-style = "space"
 
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ted_watch", "src/tenders"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+pythonpath = ["src"]
 addopts = "-q --strict-markers"
