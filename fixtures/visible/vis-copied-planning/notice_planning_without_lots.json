@@ -1,0 +1,23 @@
+{
+  "noticeId": "789012-2024",
+  "title": "Prior information notice for IT services",
+  "noticeType": "planning",
+  "publicationDate": "2024-03-01",
+  "deadline": null,
+  "country": "FR",
+  "authorityName": "Ministère de l'Économie",
+  "authorityCity": "Paris",
+  "authorityCountry": "FR",
+  "cpvCodes": [
+    "72000000",
+    "72200000"
+  ],
+  "lots": [],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "url": "https://ted.europa.eu/notice/789012-2024",
+  "procedureIdentifier": "vis-copied-planning",
+  "caseTags": [
+    "no_pointer"
+  ]
+}

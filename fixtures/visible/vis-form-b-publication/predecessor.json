@@ -1,0 +1,29 @@
+{
+  "noticeId": "719096-2026",
+  "title": "Medical equipment supply — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-12",
+  "deadline": "2024-03-15",
+  "country": "IT",
+  "authorityName": "Azienda Ospedaliera Universitaria",
+  "authorityCity": "Roma",
+  "authorityCountry": "IT",
+  "cpvCodes": [
+    "33100000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-03-15"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "aaaaaaaa-1111-4111-8111-111111111111",
+  "noticeVersion": "01",
+  "publicationNumber": "719096-2026",
+  "procedureIdentifier": "vis-form-b-publication",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/719096-2026"
+}

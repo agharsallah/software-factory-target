@@ -1,0 +1,33 @@
+{
+  "noticeId": "810002-2024",
+  "title": "IT services framework — deadline correction",
+  "noticeType": "contract",
+  "publicationDate": "2024-03-20",
+  "deadline": "2024-05-20",
+  "country": "DE",
+  "authorityName": "Bundesministerium des Innern",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-20",
+      "deadlineChangeReasonCode": "cor-buy",
+      "deadlineChangeReason": "Correction of buyer information"
+    }
+  ],
+  "changeReasonCode": "cor-buy",
+  "changeReason": "Correction of buyer information",
+  "noticeIdentifier": "e6f24cac-1111-4111-8111-111111111111",
+  "noticeVersion": "02",
+  "publicationNumber": "810002-2024",
+  "procedureIdentifier": "vis-form-a-uuid",
+  "changeNoticeVersionIdentifier": "e6f24cac-1111-4111-8111-111111111111-01",
+  "caseTags": [
+    "form_a_uuid_version"
+  ],
+  "url": "https://ted.europa.eu/notice/810002-2024"
+}

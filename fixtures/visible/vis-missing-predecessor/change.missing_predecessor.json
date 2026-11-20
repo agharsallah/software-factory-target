@@ -1,0 +1,33 @@
+{
+  "noticeId": "810041-2024",
+  "title": "Hospital wing construction — missing predecessor",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-03",
+  "deadline": "2024-07-01",
+  "country": "ES",
+  "authorityName": "Ministerio de Transportes",
+  "authorityCity": "Madrid",
+  "authorityCountry": "ES",
+  "cpvCodes": [
+    "45210000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-07-01",
+      "deadlineChangeReasonCode": "susp-review",
+      "deadlineChangeReason": "Suspended pending review"
+    }
+  ],
+  "changeReasonCode": "susp-review",
+  "changeReason": "Suspended pending review",
+  "noticeIdentifier": "cccccccc-1111-4111-8111-111111111111",
+  "noticeVersion": "02",
+  "publicationNumber": "810041-2024",
+  "procedureIdentifier": "vis-missing-predecessor",
+  "changeNoticeVersionIdentifier": "000000-2099",
+  "caseTags": [
+    "missing_predecessor"
+  ],
+  "url": "https://ted.europa.eu/notice/810041-2024"
+}

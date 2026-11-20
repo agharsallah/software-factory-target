@@ -34,6 +34,14 @@ uv run python -m src.ted_watch.cli --fixtures fixtures/connectors/ted_api/fixtur
 
 The CLI reads JSON fixtures from `fixtures/connectors/ted_api/fixtures/`, maps them through the pure `map_raw_to_notice` function, diffs per-lot deadlines, and writes deadline-change events as JSONL to the output file.
 
+Run the conformance runner against either split (offline, no network calls):
+```bash
+uv run python -m src.ted_watch.conformance --fixtures fixtures/visible
+uv run python -m src.ted_watch.conformance --fixtures fixtures/holdout
+```
+
+`fixtures/visible/` and `fixtures/holdout/` group notices by procedure-identifier. A change and its predecessor stay on the same side, and each §3.4 case tag appears in both sets. The flat connector fixtures remain usable.
+
 ## §3.4 Conformance cases
 
 The link resolution (`resolve_predecessor`) handles both pointer forms used by TED:

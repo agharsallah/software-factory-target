@@ -1,0 +1,26 @@
+{
+  "noticeId": "810051-2024",
+  "title": "Prior information notice without a change pointer",
+  "noticeType": "planning",
+  "publicationDate": "2024-03-11",
+  "deadline": null,
+  "country": "NL",
+  "authorityName": "Rijkswaterstaat",
+  "authorityCity": "Utrecht",
+  "authorityCountry": "NL",
+  "cpvCodes": [
+    "72000000"
+  ],
+  "lots": [],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "dddddddd-1111-4111-8111-111111111111",
+  "noticeVersion": "01",
+  "publicationNumber": "810051-2024",
+  "procedureIdentifier": "vis-no-pointer",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [
+    "no_pointer"
+  ],
+  "url": "https://ted.europa.eu/notice/810051-2024"
+}

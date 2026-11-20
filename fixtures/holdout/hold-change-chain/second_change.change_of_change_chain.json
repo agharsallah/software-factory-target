@@ -1,0 +1,33 @@
+{
+  "noticeId": "820062-2024",
+  "title": "Identity platform — change of a change",
+  "noticeType": "contract",
+  "publicationDate": "2024-03-12",
+  "deadline": "2024-05-20",
+  "country": "CZ",
+  "authorityName": "Ministerstvo vnitra",
+  "authorityCity": "Praha",
+  "authorityCountry": "CZ",
+  "cpvCodes": [
+    "72260000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-20",
+      "deadlineChangeReasonCode": "cancel-intent",
+      "deadlineChangeReason": "Intended cancellation"
+    }
+  ],
+  "changeReasonCode": "cancel-intent",
+  "changeReason": "Intended cancellation",
+  "noticeIdentifier": "eeeeeeee-2222-4222-8222-222222222222",
+  "noticeVersion": "01",
+  "publicationNumber": "820062-2024",
+  "procedureIdentifier": "hold-change-chain",
+  "changeNoticeVersionIdentifier": "820061-2024",
+  "caseTags": [
+    "change_of_change_chain"
+  ],
+  "url": "https://ted.europa.eu/notice/820062-2024"
+}

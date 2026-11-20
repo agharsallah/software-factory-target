@@ -1,0 +1,33 @@
+{
+  "noticeId": "810021-2024",
+  "title": "Medical equipment supply — publication pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-28",
+  "deadline": "2024-04-02",
+  "country": "IT",
+  "authorityName": "Azienda Ospedaliera Universitaria",
+  "authorityCity": "Roma",
+  "authorityCountry": "IT",
+  "cpvCodes": [
+    "33100000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-04-02",
+      "deadlineChangeReasonCode": "update-add",
+      "deadlineChangeReason": "Additional information"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": "Additional information",
+  "noticeIdentifier": "aaaaaaaa-1111-4111-8111-111111111112",
+  "noticeVersion": "01",
+  "publicationNumber": "810021-2024",
+  "procedureIdentifier": "vis-form-b-publication",
+  "changeNoticeVersionIdentifier": "719096-2026",
+  "caseTags": [
+    "form_b_publication_number"
+  ],
+  "url": "https://ted.europa.eu/notice/810021-2024"
+}
