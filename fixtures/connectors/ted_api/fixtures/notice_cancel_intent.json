@@ -1,0 +1,23 @@
+{
+  "noticeId": "610002-2024",
+  "title": "Intended cancellation of tender procedure",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-18",
+  "deadline": "2024-06-25",
+  "country": "POL",
+  "authorityName": "Ministerstwo Cyfryzacji",
+  "authorityCity": "Warszawa",
+  "authorityCountry": "POL",
+  "cpvCodes": ["72000000"],
+  "lots": [
+    {
+      "id": "LOT-K1",
+      "deadline": "2024-06-25",
+      "deadlineChangeReasonCode": "cancel-intent",
+      "deadlineChangeReason": "Contracting authority intends to cancel"
+    }
+  ],
+  "changeReasonCode": "cancel-intent",
+  "changeReason": "Contracting authority intends to cancel",
+  "url": "https://ted.europa.eu/notice/610002-2024"
+}
