@@ -1,0 +1,29 @@
+{
+  "noticeId": "999888-2024",
+  "title": "Road maintenance services framework",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-20",
+  "deadline": "2024-03-20",
+  "country": "ES",
+  "authorityName": "Ministerio de Transportes",
+  "authorityCity": "Madrid",
+  "authorityCountry": "ES",
+  "cpvCodes": ["45233100", "45233200"],
+  "lots": [
+    {
+      "lotId": "LOT-100",
+      "submissionDeadline": "2024-03-20",
+      "changeReasonCode": "EXT",
+      "changeReason": "Extended for additional bids"
+    },
+    {
+      "lotId": "LOT-200",
+      "submissionDeadline": "2024-04-10",
+      "changeReasonCode": "NONE",
+      "changeReason": "No change"
+    }
+  ],
+  "changeReasonCode": "EXT",
+  "changeReason": "Extended for additional bids",
+  "url": "https://ted.europa.eu/notice/999888-2024"
+}
