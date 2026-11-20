@@ -17,6 +17,8 @@ dependencies = [
 dev-dependencies = [
     "pytest>=8.0",
     "ruff>=0.5",
+    "mypy>=1.13",
+    "types-pyyaml>=6.0",
 ]
 
 [tool.ruff]
@@ -43,3 +45,23 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 pythonpath = ["src"]
 addopts = "-q --strict-markers"
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+explicit_package_bases = true
+warn_unused_configs = true
+# tests/ and the tenders shim import src.ted_watch, the same files as ted_watch.
+exclude = ["(^|/)tests/", "(^|/)src/tenders/"]
+
+# Strict-ish checking for core/, connectors/ and conformance/ only.
+[[tool.mypy.overrides]]
+module = [
+    "ted_watch.core",
+    "ted_watch.core.*",
+    "ted_watch.connectors",
+    "ted_watch.connectors.*",
+    "ted_watch.conformance",
+]
+strict = true
+disallow_untyped_defs = true

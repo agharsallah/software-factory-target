@@ -49,7 +49,7 @@ class RawNotice(BaseModel):
     cpv_codes: list[str] = Field(
         default_factory=list, validation_alias="cpvCodes", description="CPV classification codes"
     )
-    lots: list[dict] = Field(default_factory=list, description="Raw lot data from API")
+    lots: list[dict[str, object]] = Field(default_factory=list, description="Raw lot data from API")
     change_reason_code: str | None = Field(
         None,
         validation_alias="changeReasonCode",
