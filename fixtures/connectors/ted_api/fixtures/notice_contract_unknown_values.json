@@ -1,0 +1,24 @@
+{
+  "noticeId": "888777-2024",
+  "title": "Services with an unrecognised change reason",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-01",
+  "deadline": "2024-07-01",
+  "country": "DE",
+  "authorityName": "Test Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": ["72000000"],
+  "lots": [
+    {
+      "id": "LOT-1",
+      "deadline": "2024-07-01",
+      "deadlineChangeReasonCode": "none",
+      "deadlineChangeReason": "No change"
+    }
+  ],
+  "changeReasonCode": "new-code-x",
+  "changeReason": "Unrecognised change reason code",
+  "changeNoticeVersionIdentifier": "not-a-pointer",
+  "url": "https://ted.europa.eu/notice/888777-2024"
+}
