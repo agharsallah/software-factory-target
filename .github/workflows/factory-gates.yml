@@ -1,0 +1,24 @@
+name: factory-gates
+# The single required check on the default branch. Branch protection binds it to the
+# GitHub Actions app, so no other app can post a fake green status with this name.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  factory-gates:
+    name: factory-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hard gates
+        run: |
+          if [ -x ./gates.sh ]; then ./gates.sh
+          elif [ -f Makefile ] && grep -q '^gates:' Makefile; then make gates
+          else echo "No gates defined yet (add gates.sh or a 'gates' make target)."; fi
