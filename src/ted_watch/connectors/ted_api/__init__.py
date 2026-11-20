@@ -1,1 +1,1 @@
-"""TED API connector for fetching tender data."""
+"""TED API connector. Source metadata lives in source.yaml."""
