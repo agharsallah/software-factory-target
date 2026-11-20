@@ -1,0 +1,29 @@
+{
+  "noticeId": "810030-2024",
+  "title": "Software development services — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-02",
+  "deadline": "2024-06-01",
+  "country": "PL",
+  "authorityName": "Ministerstwo Cyfryzacji",
+  "authorityCity": "Warszawa",
+  "authorityCountry": "PL",
+  "cpvCodes": [
+    "72200000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-06-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "bbbbbbbb-1111-4111-8111-111111111111",
+  "noticeVersion": "01",
+  "publicationNumber": "719197-2026",
+  "procedureIdentifier": "vis-form-b-scan",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810030-2024"
+}

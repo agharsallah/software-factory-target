@@ -1,0 +1,29 @@
+{
+  "noticeId": "820001-2024",
+  "title": "Network operations centre — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-06-01",
+  "deadline": "2024-08-01",
+  "country": "AT",
+  "authorityName": "Bundesministerium für Finanzen",
+  "authorityCity": "Wien",
+  "authorityCountry": "AT",
+  "cpvCodes": [
+    "72267000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-08-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "e6f24cac-2222-4222-8222-222222222221",
+  "noticeVersion": "01",
+  "publicationNumber": "820001-2024",
+  "procedureIdentifier": "hold-form-a-uuid",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/820001-2024"
+}

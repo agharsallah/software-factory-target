@@ -1,0 +1,33 @@
+{
+  "noticeId": "820031-2024",
+  "title": "Data centre hosting — scanned publication pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-07-19",
+  "deadline": "2024-09-18",
+  "country": "FI",
+  "authorityName": "Digi- ja väestötietovirasto",
+  "authorityCity": "Helsinki",
+  "authorityCountry": "FI",
+  "cpvCodes": [
+    "72500000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-09-18",
+      "deadlineChangeReasonCode": "info-release",
+      "deadlineChangeReason": "Information release"
+    }
+  ],
+  "changeReasonCode": "info-release",
+  "changeReason": "Information release",
+  "noticeIdentifier": "bbbbbbbb-2222-4222-8222-222222222222",
+  "noticeVersion": "01",
+  "publicationNumber": "820031-2024",
+  "procedureIdentifier": "hold-form-b-scan",
+  "changeNoticeVersionIdentifier": "719397-2026",
+  "caseTags": [
+    "form_b_index_scan"
+  ],
+  "url": "https://ted.europa.eu/notice/820031-2024"
+}

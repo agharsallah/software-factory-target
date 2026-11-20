@@ -1,0 +1,31 @@
+{
+  "noticeId": "820061-2024",
+  "title": "Identity platform — first correction",
+  "noticeType": "contract",
+  "publicationDate": "2024-02-26",
+  "deadline": "2024-05-02",
+  "country": "CZ",
+  "authorityName": "Ministerstvo vnitra",
+  "authorityCity": "Praha",
+  "authorityCountry": "CZ",
+  "cpvCodes": [
+    "72260000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-02",
+      "deadlineChangeReasonCode": "cor-buy",
+      "deadlineChangeReason": "Correction of buyer information"
+    }
+  ],
+  "changeReasonCode": "cor-buy",
+  "changeReason": "Correction of buyer information",
+  "noticeIdentifier": "eeeeeeee-2222-4222-8222-222222222221",
+  "noticeVersion": "01",
+  "publicationNumber": "820061-2024",
+  "procedureIdentifier": "hold-change-chain",
+  "changeNoticeVersionIdentifier": "820060-2024",
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/820061-2024"
+}

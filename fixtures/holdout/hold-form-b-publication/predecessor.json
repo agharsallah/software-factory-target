@@ -1,0 +1,29 @@
+{
+  "noticeId": "719296-2026",
+  "title": "Laboratory equipment — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-09",
+  "deadline": "2024-06-12",
+  "country": "PT",
+  "authorityName": "Ministério da Saúde",
+  "authorityCity": "Lisboa",
+  "authorityCountry": "PT",
+  "cpvCodes": [
+    "33140000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-06-12"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "aaaaaaaa-2222-4222-8222-222222222221",
+  "noticeVersion": "01",
+  "publicationNumber": "719296-2026",
+  "procedureIdentifier": "hold-form-b-publication",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/719296-2026"
+}
