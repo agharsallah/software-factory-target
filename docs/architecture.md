@@ -37,17 +37,22 @@ Lookup is direct, then a scan of candidate keys on each indexed notice (`notice_
 
 ### diff
 
-Not a module. Nothing compares a predecessor deadline to the current deadline.
+Implemented in `core/diff.py`. `diff_notices(previous, current)` reads the change-reason code on the current notice and on its lots.
 
-The CLI stand-in is `_build_events` in `ted_watch/cli.py`. For each mapped notice it emits a row when a change-reason code is present and not `none`, and a current deadline exists. Per-lot reason wins over the notice reason. `previous` is always `null`. It does not load a predecessor and does not call `resolve_predecessor`.
+- `susp-review` yields one `procedure_suspended` event.
+- `cancel-intent` yields one `cancellation_intended` event.
 
-Reason text selects the event name: substring `susp` → `suspension`, substring `cancel` → `cancellation`, otherwise `deadline_change`.
+Those events are never `deadline_changed`, even when the deadline moved. Each carries `notice` (the notice id), `source` (the notice URL), `coverage` and `attribution`, plus dedupe identity (`kind`, `procedure`, `previous_notice`, `current_notice`). Personal-data fields are not copied. Coverage and attribution default to the strings in `connectors/ted_api/source.yaml`. Other reason codes yield nothing; a deadline-to-deadline compare is not emitted yet.
+
+The CLI calls `diff_notices` for those two codes and does not attach deadline fields. Other codes still go through `_build_events` as `deadline_change` rows. `previous` on those rows is still `null`. The CLI does not call `resolve_predecessor`.
 
 ### event
 
-The CLI writes one JSON object per line. Fields: `event`, `kind`, `lot`, `previous`, `current`, `current_utc` (`YYYY-MM-DDT00:00:00Z`), `source` (notice URL, or `ted.europa.eu`), `coverage` (`EU tenders`), `attribution` (`TED (ted.europa.eu)`). The CLI hardcodes coverage and attribution; it does not read `source.yaml`.
+The CLI writes one JSON object per line. Deadline rows use `event`, `kind`, `lot`, `previous`, `current`, `current_utc` (`YYYY-MM-DDT00:00:00Z`), `source` (notice URL, or `ted.europa.eu`), `coverage` (`EU tenders`), `attribution` (`TED (ted.europa.eu)`). The CLI hardcodes coverage and attribution; it does not read `source.yaml`.
 
-`core/dedupe.py` can stamp a stable id and drop repeats. `event_id` is SHA-256 over procedure, lot, kind, previous notice, and current notice, in that order. Deadline strings are not part of the id. `Dedupe` remembers ids already emitted and yields each logical change once, in any order. The CLI does not call it, and CLI rows have no `procedure` or notice-id fields, so they are not yet dedupe-ready.
+Procedure events (`procedure_suspended`, `cancellation_intended`) come from `diff_notices`. They carry `notice`, `source`, `coverage` and `attribution`, and no deadline fields. The CLI passes its shorter attribution string into that call.
+
+`core/dedupe.py` can stamp a stable id and drop repeats. `event_id` is SHA-256 over procedure, lot, kind, previous notice, and current notice, in that order. Deadline strings are not part of the id. `Dedupe` remembers ids already emitted and yields each logical change once, in any order. The CLI does not call it. Procedure events include `procedure`, `kind` and `current_notice`, so they are dedupe-ready. Deadline rows still omit those fields.
 
 ## What the CLI runs today
 
@@ -62,7 +67,7 @@ Filters, all optional: CPV division is a prefix of `cpv_codes`; country is match
 | Path | Role in the flow |
 | --- | --- |
 | `connectors/` | Source metadata for a future list/fetch. No client. |
-| `core/` | Models, map, link, source loader, dedupe. |
+| `core/` | Models, map, link, diff, source loader, dedupe. |
 | `conformance/` | Empty package. Cases live in `tests/core/test_link.py`. |
 | CLI (`ted_watch/cli.py`, `tenders/`) | Fixture load, map, filter, JSONL. Skips link and dedupe. |
 
@@ -87,5 +92,6 @@ Other offline checks, not part of that list:
 - Map fixtures in `tests/core/test_map.py`: `notice_contract_with_lots.json`, `notice_planning_without_lots.json`, `notice_contract_change_reason.json`, `notice_contract_alternate_fields.json`. The two `notice_contract_cpv72_*.json` files are CLI inputs only; map tests do not parametrize over them.
 - `tests/core/test_source.py` loads `connectors/ted_api/source.yaml` and rejects missing required keys.
 - `tests/core/test_dedupe.py` checks id stability, order independence, and exactly-once emit.
+- `tests/core/test_diff.py` checks `susp-review` and `cancel-intent` fixtures under `fixtures/visible/`.
 
 No property tests. No schema validator for the JSONL event beyond the `Event` TypedDict in `dedupe.py`.

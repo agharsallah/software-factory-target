@@ -19,6 +19,12 @@ Pure mapping from raw TED API data to internal models. `map_raw_to_notice(raw) -
 
 Predecessor link resolution for TED notices. `resolve_predecessor(notice, index) -> Notice | None`. This is the **link** stage. See [architecture](architecture.md) for the two pointer forms and the seven covered cases. One hop per call. Not used by the CLI.
 
+## diff.py
+
+Pure diff of a predecessor notice against the current notice. `diff_notices(previous, current) -> list[Event]`. No I/O.
+
+`susp-review` yields `procedure_suspended`. `cancel-intent` yields `cancellation_intended`. Those events are never `deadline_changed`, even when the deadline moved. Each carries `notice` (notice id), `source` (notice URL), `coverage` and `attribution`. Deadline values and personal-data fields are not copied. Coverage and attribution default to the strings in `connectors/ted_api/source.yaml`; callers may override them. Other reason codes yield nothing.
+
 ## source.py
 
 Load connector source metadata from a `source.yaml` file. `load_source(path) -> Source`. Rejects a non-mapping file and any missing required key, including nested ones (`access.our_budget`). Does not fetch.

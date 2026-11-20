@@ -1,0 +1,31 @@
+{
+  "noticeId": "810102-2024",
+  "title": "Road maintenance framework — suspended pending review",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-20",
+  "deadline": "2024-06-30",
+  "country": "FI",
+  "authorityName": "Synthetic Roads Agency",
+  "authorityCity": "Helsinki",
+  "authorityCountry": "FI",
+  "cpvCodes": [
+    "45233120"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-06-30",
+      "deadlineChangeReasonCode": "susp-review",
+      "deadlineChangeReason": "Procedure suspended pending review"
+    }
+  ],
+  "changeReasonCode": "susp-review",
+  "changeReason": "Procedure suspended pending review",
+  "noticeIdentifier": "11111111-1111-4111-8111-111111111101",
+  "noticeVersion": "02",
+  "publicationNumber": "810102-2024",
+  "procedureIdentifier": "vis-susp-review",
+  "changeNoticeVersionIdentifier": "810101-2024",
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810102-2024"
+}

@@ -1,0 +1,31 @@
+{
+  "noticeId": "810112-2024",
+  "title": "Laboratory supplies — cancellation intended",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-18",
+  "deadline": "2024-07-15",
+  "country": "SE",
+  "authorityName": "Synthetic Health Authority",
+  "authorityCity": "Stockholm",
+  "authorityCountry": "SE",
+  "cpvCodes": [
+    "33600000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-07-15",
+      "deadlineChangeReasonCode": "cancel-intent",
+      "deadlineChangeReason": "Cancellation of the procedure is intended"
+    }
+  ],
+  "changeReasonCode": "cancel-intent",
+  "changeReason": "Cancellation of the procedure is intended",
+  "noticeIdentifier": "22222222-2222-4222-8222-222222222201",
+  "noticeVersion": "02",
+  "publicationNumber": "810112-2024",
+  "procedureIdentifier": "vis-cancel-intent",
+  "changeNoticeVersionIdentifier": "810111-2024",
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810112-2024"
+}

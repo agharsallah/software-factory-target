@@ -34,9 +34,10 @@ _IDENTITY_FIELDS = (
 
 
 class Event(TypedDict, total=False):
-    """Deadline-change event as emitted by the CLI, plus logical-change identity."""
+    """Deadline-change or procedure event, plus logical-change identity."""
 
     event: str
+    notice: str
     kind: str
     lot: str | None
     previous: str | None
