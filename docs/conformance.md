@@ -18,4 +18,8 @@ The cases that exist today are link-resolution cases in `tests/core/test_link.py
 
 Map, source-loader, and dedupe checks live under `tests/core/` as well. They are not conformance-package cases.
 
-Not covered anywhere: a conformance runner, property tests, and an event-schema check beyond the `Event` TypedDict.
+## Property checks
+
+`src/ted_watch/conformance/properties.py` mutates the `fixtures/connectors/ted_api/fixtures/` notices with Hypothesis (drops optional fields, shuffles lots, truncates date strings). Map must never raise on input `RawNotice` accepts. Every `diff_notices` event is checked by `validate_event` (required keys, non-empty strings); a failing event is reported as unresolved. `run_properties(max_examples=25)` is the bounded kit entry point; tests are in `tests/test_conformance_hypothesis.py`.
+
+Not covered anywhere: a full JSON-schema check beyond `validate_event` and the `Event` TypedDict.
