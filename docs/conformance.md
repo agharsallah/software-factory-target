@@ -33,4 +33,6 @@ The seven §3.4 link cases are resolved by `resolve_predecessor` and tested in `
 
 Fixture directories: `vis-*` and `hold-*` for each case (for example `hold-form-b-scan`, `hold-change-chain`), plus `hold-copied-*` and `vis-copied-*` copies of the connector fixtures, and `vis-susp-review` and `vis-cancel-intent` for diff.
 
+The runner also replays every procedure through `core.pipeline` in original, reversed, seeded-shuffled (seeds 0, 1, 7, 42) and doubled delivery order, and requires the same event ids with no duplicates (`conformance/replay.py`).
+
 Not covered: property tests and an event-schema check beyond the `Event` TypedDict.

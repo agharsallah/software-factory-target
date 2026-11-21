@@ -1,13 +1,16 @@
-"""Tests for the offline connector → link → diff → dedupe pipeline."""
+"""Tests for the pipeline: offline connector run and the replay conformance check."""
 
 import random
 from datetime import date
 from pathlib import Path
 
 import pytest
+from src.ted_watch.conformance.replay import replay_check
+from src.ted_watch.conformance.runner import notice_records
 from src.ted_watch.connectors import FakeConnector
+from src.ted_watch.core.dedupe import event_id
 from src.ted_watch.core.model import RawNotice
-from src.ted_watch.core.pipeline import run
+from src.ted_watch.core.pipeline import run, run_pipeline
 from src.ted_watch.core.source import load_source
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -183,3 +186,17 @@ class TestPipeline:
         assert first == second
         assert first is not second
         assert first.notice_id == raw.notice_id
+
+
+class TestRunPipeline:
+    @pytest.mark.parametrize("path", [VISIBLE, HOLDOUT])
+    def test_replay_check_passes(self, path: Path) -> None:
+        assert replay_check(path) == []
+
+    @pytest.mark.parametrize("path", [VISIBLE, HOLDOUT])
+    def test_duplicated_delivery_matches_original(self, path: Path) -> None:
+        items = [RawNotice.model_validate(item) for _, item in notice_records(path)]
+        once = {event_id(e) for e in run_pipeline(items)}
+        twice = [event_id(e) for e in run_pipeline(items + items)]
+        assert set(twice) == once
+        assert len(twice) == len(set(twice))
