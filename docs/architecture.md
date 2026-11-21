@@ -26,7 +26,7 @@ Implemented in `core/map.py`. `map_raw_to_notice` takes a `RawNotice` (pydantic,
 
 ### link
 
-Implemented in `core/link.py`, not called by the CLI. `resolve_predecessor(notice, index)` reads `change_notice_version_identifier` and looks it up in a `dict[str, Notice]`.
+Implemented in `core/link.py`, not called by the CLI. `core/predecessors.py` adds `PredecessorCache` on top: index first, then an injected `fetch`, with an on-disk JSON cache of hits and misses; a miss returns `Unresolved` (status `unknown`, no deadline). It opens no connection itself. `resolve_predecessor(notice, index)` reads `change_notice_version_identifier` and looks it up in a `dict[str, Notice]`.
 
 Two pointer forms:
 
@@ -54,6 +54,15 @@ Procedure events (`procedure_suspended`, `cancellation_intended`) come from `dif
 
 `core/dedupe.py` can stamp a stable id and drop repeats. `event_id` is SHA-256 over procedure, lot, kind, previous notice, and current notice, in that order. Deadline strings are not part of the id. `Dedupe` remembers ids already emitted and yields each logical change once, in any order. The CLI does not call it. Procedure events include `procedure`, `kind` and `current_notice`, so they are dedupe-ready. Deadline rows still omit those fields.
 
+## Data flow of a deadline change
+
+1. **list** — not implemented. A real run would page the TED search API.
+2. **fetch** — not implemented. Today a fixture JSON file stands in.
+3. **map** — `map_raw_to_notice` turns the raw change notice into a `Notice` with lot deadlines.
+4. **link** — `resolve_predecessor` (or `PredecessorCache`) finds the notice the change points at. Not called by the CLI.
+5. **diff** — `diff_notices(previous, current)` emits events for `susp-review` and `cancel-intent`; other codes yield nothing yet.
+6. **event** — one JSON line per change, optionally stamped and deduplicated by `core/dedupe.py` (not called by the CLI).
+
 ## What the CLI runs today
 
 ```text
@@ -67,15 +76,15 @@ Filters, all optional: CPV division is a prefix of `cpv_codes`; country is match
 | Path | Role in the flow |
 | --- | --- |
 | `connectors/` | Source metadata for a future list/fetch. No client. |
-| `core/` | Models, map, link, diff, source loader, dedupe. |
-| `conformance/` | Empty package. Cases live in `tests/core/test_link.py`. |
+| `core/` | Models, map, link, predecessor cache, diff, source loader, dedupe. |
+| `conformance/` | Runner over `fixtures/visible` and `fixtures/holdout`. Link cases are tested in `tests/core/test_link.py`. |
 | CLI (`ted_watch/cli.py`, `tenders/`) | Fixture load, map, filter, JSONL. Skips link and dedupe. |
 
 Pages: [connectors](connectors.md), [core](core.md), [conformance](conformance.md), [cli](cli.md).
 
 ## Conformance cases
 
-The seven link cases below are what the README calls §3.4. Each is covered by a test in `tests/core/test_link.py`. `conformance/` does not contain them.
+The seven link cases below are what the README calls §3.4. Each is covered by a test in `tests/core/test_link.py`. `conformance/runner.py` does not re-run them; it checks that the visible and holdout fixtures load and reports their case tags.
 
 | Case | Covered | Test |
 | --- | --- | --- |
