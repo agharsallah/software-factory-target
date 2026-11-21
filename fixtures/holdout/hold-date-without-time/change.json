@@ -1,0 +1,32 @@
+{
+  "noticeId": "115002-2026",
+  "title": "Synthetic hold-date-without-time",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000115-aaaa-4aaa-8aaa-000000000115",
+  "noticeVersion": "02",
+  "publicationNumber": "115002-2026",
+  "procedureIdentifier": "hold-date-without-time",
+  "changeNoticeVersionIdentifier": "115001-2026",
+  "caseTags": [
+    "date_without_time"
+  ],
+  "url": "https://ted.europa.eu/notice/115002-2026",
+  "deadlineTime": null
+}

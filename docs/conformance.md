@@ -2,6 +2,8 @@
 
 Conformance runner for the visible and holdout fixture sets.
 
+`conformance/coverage.py` holds the twelve-case §3.4 list (`SECTION_3_4_CASES`). `fixtures/cases.yaml` maps each procedure directory to its case tags. `tests/test_conformance.py` fails naming any case missing from the visible or the holdout side, and checks the manifest against the `caseTags` in the fixtures. The date-without-time, offset-differs, and delivery-order fixtures are synthetic and raw-only: the model carries a date, not a time or offset.
+
 - `runner.py` — `main(argv)` takes `--fixtures` (a JSON file, a flat directory, or a directory grouped by procedure). `run` fails if the path is missing, no notices are found, any notice does not map, or a procedure directory holds notices with a different `procedureIdentifier`. Otherwise it prints the notice count, procedure count and case tags. Helpers: `notice_records`, `case_tags`, `procedure_identifiers`, `load_notices`. `SECTION_3_4_CASE_TAGS` lists the seven tags.
 - `__main__.py` — `python -m ted_watch.conformance`.
 - `__init__.py` — package docstring.

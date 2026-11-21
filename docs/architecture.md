@@ -77,7 +77,7 @@ Filters, all optional: CPV division is a prefix of `cpv_codes`; country is match
 | --- | --- |
 | `connectors/` | Source metadata for a future list/fetch. No client. |
 | `core/` | Models, map, link, predecessor cache, diff, source loader, dedupe. |
-| `conformance/` | Runner over `fixtures/visible` and `fixtures/holdout`. Link cases are tested in `tests/core/test_link.py`. |
+| `conformance/` | Runner over `fixtures/visible` and `fixtures/holdout`, and §3.4 case-coverage list (`coverage.py`). Link cases are tested in `tests/core/test_link.py`. |
 | CLI (`ted_watch/cli.py`, `tenders/`) | Fixture load, map, filter, JSONL. Skips link and dedupe. |
 
 Pages: [connectors](connectors.md), [core](core.md), [conformance](conformance.md), [cli](cli.md).
