@@ -110,6 +110,10 @@ class Notice(BaseModel):
         None, description="Pointer to predecessor notice (UUID+version or publication number)"
     )
     url: str | None = Field(None, description="Link to full notice on TED")
+    unknowns: list[dict[str, str]] = Field(
+        default_factory=list,
+        description="Unrecognised values observed while mapping ({kind, value})",
+    )
 
 
 class SourceBudget(BaseModel):

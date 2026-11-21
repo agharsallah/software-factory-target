@@ -26,6 +26,7 @@ def load_fixture(name: str) -> RawNotice:
         "notice_planning_without_lots.json",
         "notice_contract_change_reason.json",
         "notice_contract_alternate_fields.json",
+        "notice_contract_unknown_values.json",
     ]
 )
 def raw_notice(request) -> RawNotice:
@@ -145,3 +146,82 @@ def test_map_raw_to_notice_is_pure(raw_notice: RawNotice) -> None:
     assert notice1 == notice2
     # Ensure it's not the same object (immutability)
     assert notice1 is not notice2
+
+
+def test_map_records_unrecognised_reason_and_malformed_pointer() -> None:
+    """Unrecognised reason codes and pointer shapes are returned, not dropped."""
+    raw = load_fixture("notice_contract_unknown_values.json")
+    notice = map_raw_to_notice(raw)
+    assert notice.unknowns == [
+        {"kind": "change-reason-code", "value": "new-code-x"},
+        {"kind": "pointer", "value": "not-a-pointer"},
+    ]
+    assert notice.change_reason_code == "new-code-x"
+    assert notice.change_notice_version_identifier == "not-a-pointer"
+
+
+def test_map_records_unequal_lot_arrays() -> None:
+    """Lot arrays of unequal length are recorded and do not crash mapping."""
+    raw = RawNotice.model_validate(
+        {
+            "noticeId": "1",
+            "title": "t",
+            "noticeType": "contract",
+            "publicationDate": "2024-01-01",
+            "country": "DE",
+            "authorityName": "A",
+            "authorityCountry": "DE",
+            "identifier-lot": ["LOT-1", "LOT-2"],
+            "deadline-receipt-tender-date-lot": ["2024-02-01"],
+        }
+    )
+    notice = map_raw_to_notice(raw)
+    assert notice.unknowns == [
+        {
+            "kind": "lot-arrays",
+            "value": "identifier-lot:2,deadline-receipt-tender-date-lot:1",
+        }
+    ]
+
+
+def test_map_equal_lot_arrays_are_not_unknown() -> None:
+    """Parallel lot arrays of the same length are not reported."""
+    raw = RawNotice.model_validate(
+        {
+            "noticeId": "1",
+            "title": "t",
+            "noticeType": "contract",
+            "publicationDate": "2024-01-01",
+            "country": "DE",
+            "authorityName": "A",
+            "authorityCountry": "DE",
+            "changeReasonCode": "cor-buy",
+            "changeNoticeVersionIdentifier": "719096-2026",
+            "identifier-lot": ["LOT-1", "LOT-2"],
+            "deadline-receipt-tender-date-lot": ["2024-02-01", "2024-03-01"],
+            "deadline-receipt-tender-time-lot": ["12:00", "13:00"],
+        }
+    )
+    notice = map_raw_to_notice(raw)
+    assert notice.unknowns == []
+
+
+def test_map_same_bytes_are_identical_and_nothing_is_global() -> None:
+    """Same input bytes yield identical notices and map keeps no global counts."""
+    import src.ted_watch.core.map as map_module
+
+    path = FIXTURE_DIR / "notice_contract_unknown_values.json"
+    payload = path.read_bytes()
+    before = {
+        key: repr(value) for key, value in vars(map_module).items() if not key.startswith("__")
+    }
+    first = map_raw_to_notice(RawNotice.model_validate(json.loads(payload)))
+    second = map_raw_to_notice(RawNotice.model_validate(json.loads(payload)))
+    after = {
+        key: repr(value) for key, value in vars(map_module).items() if not key.startswith("__")
+    }
+    assert first == second
+    assert first is not second
+    assert first.unknowns == second.unknowns
+    assert before == after
+    assert first.model_dump() == second.model_dump()
