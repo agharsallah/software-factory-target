@@ -2,7 +2,7 @@
 
 Conformance checking for tender data.
 
-The package is `conformance/__init__.py` and a one-line docstring. No checker, no case list, no fixtures, and no tests import it.
+`conformance/coverage.py` holds the twelve-case §3.4 list (`SECTION_3_4_CASES`). `fixtures/cases.yaml` maps each procedure directory to its case tags. `tests/test_conformance.py` fails naming any case missing from the visible or the holdout side, and checks the manifest against the `caseTags` in the fixtures. The date-without-time, offset-differs, and delivery-order fixtures are synthetic and raw-only: the model carries a date, not a time or offset.
 
 The cases that exist today are link-resolution cases in `tests/core/test_link.py`, documented as §3.4 in the README and in [architecture](architecture.md). All seven are covered there:
 

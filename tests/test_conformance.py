@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pytest
+from src.ted_watch.conformance.coverage import load_manifest, missing_cases, side_tags
 from src.ted_watch.conformance.runner import (
     SECTION_3_4_CASE_TAGS,
     case_tags,
@@ -99,3 +100,20 @@ def test_change_and_predecessor_share_a_procedure() -> None:
 def test_conformance_runner_accepts_fixtures_argument(fixtures_dir: Path) -> None:
     """The runner can be pointed at either split directory via --fixtures."""
     assert main(["--fixtures", str(fixtures_dir)]) == 0
+
+
+@pytest.mark.parametrize("side, root", [("visible", VISIBLE), ("holdout", HOLDOUT)])
+def test_every_section_3_4_case_is_covered_on_each_side(side: str, root: Path) -> None:
+    """Each §3.4 case is tagged in the manifest on both the visible and holdout side."""
+    manifest = load_manifest(REPO_ROOT / "fixtures" / "cases.yaml")
+    missing = missing_cases(side_tags(manifest, root))
+    assert not missing, f"{side} side is missing §3.4 case(s): {', '.join(missing)}"
+
+
+@pytest.mark.parametrize("root", [VISIBLE, HOLDOUT])
+def test_manifest_matches_fixture_case_tags(root: Path) -> None:
+    """The manifest tags of every procedure equal the caseTags in its fixtures."""
+    manifest = load_manifest(REPO_ROOT / "fixtures" / "cases.yaml")
+    for proc_dir in sorted(path for path in root.iterdir() if path.is_dir()):
+        assert proc_dir.name in manifest, f"{proc_dir.name} missing from cases.yaml"
+        assert manifest[proc_dir.name] == case_tags(proc_dir), proc_dir.name

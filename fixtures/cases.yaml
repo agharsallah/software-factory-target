@@ -1,0 +1,83 @@
+# Procedure directory -> §3.4 case tags (see src/ted_watch/conformance/coverage.py).
+hold-change-chain:
+- change_of_change_chain
+hold-copied-alternate:
+- no_pointer
+hold-copied-cpv72-deu:
+- no_pointer
+hold-copied-cpv72-pol:
+- no_pointer
+hold-dangling-pointer:
+- dangling_pointer
+hold-date-without-time:
+- date_without_time
+hold-differing-lot-deadlines:
+- differing_lot_deadlines
+hold-duplicate-delivery:
+- duplicate_delivery
+hold-form-a-components:
+- form_a_index_keyed_by_components
+hold-form-a-uuid:
+- form_a_uuid_version
+hold-form-b-publication:
+- form_b_publication_number
+hold-form-b-scan:
+- form_b_index_scan
+hold-lot-added:
+- lot_added
+hold-lot-removed:
+- lot_removed
+hold-missing-predecessor:
+- missing_predecessor
+hold-no-op-change:
+- no_op_change
+hold-no-pointer:
+- no_pointer
+hold-offset-differs:
+- offset_differs
+hold-out-of-order-delivery:
+- out_of_order_delivery
+hold-outside-window:
+- predecessor_outside_window
+vis-cancel-intent: []
+vis-change-chain:
+- change_of_change_chain
+vis-copied-change-reason:
+- no_pointer
+vis-copied-planning:
+- no_pointer
+vis-copied-with-lots:
+- no_pointer
+vis-dangling-pointer:
+- dangling_pointer
+vis-date-without-time:
+- date_without_time
+vis-differing-lot-deadlines:
+- differing_lot_deadlines
+vis-duplicate-delivery:
+- duplicate_delivery
+vis-form-a-components:
+- form_a_index_keyed_by_components
+vis-form-a-uuid:
+- form_a_uuid_version
+vis-form-b-publication:
+- form_b_publication_number
+vis-form-b-scan:
+- form_b_index_scan
+vis-lot-added:
+- lot_added
+vis-lot-removed:
+- lot_removed
+vis-missing-predecessor:
+- missing_predecessor
+vis-no-op-change:
+- no_op_change
+vis-no-pointer:
+- no_pointer
+vis-offset-differs:
+- offset_differs
+vis-out-of-order-delivery:
+- out_of_order_delivery
+vis-outside-window:
+- predecessor_outside_window
+vis-susp-review: []

@@ -113,6 +113,8 @@ uv run python -m src.ted_watch.conformance --fixtures fixtures/holdout
 6. **No pointer** (no `change-notice-version-identifier` → returns `None`) — covered (`test_no_pointer`)
 7. **Change-of-change chain** (A→B→C, one hop per call) — covered (`test_change_of_change_chain`)
 
+`ted_watch.conformance.coverage` lists twelve §3.4 cases (the seven above plus lot added/removed, differing lot deadlines, no-op change, date without time, offset differs, dangling pointer, predecessor outside window, duplicate and out-of-order delivery). `fixtures/cases.yaml` tags each procedure, and a pytest names any case missing from the visible or holdout side.
+
 ## Rate budget
 
 Polite access budget in `connectors/ted_api/source.yaml`. Not used by tests or the CLI.

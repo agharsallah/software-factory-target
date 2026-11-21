@@ -1,0 +1,32 @@
+{
+  "noticeId": "106002-2025",
+  "title": "Synthetic vis-offset-differs",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000106-aaaa-4aaa-8aaa-000000000106",
+  "noticeVersion": "02",
+  "publicationNumber": "106002-2025",
+  "procedureIdentifier": "vis-offset-differs",
+  "changeNoticeVersionIdentifier": "106001-2025",
+  "caseTags": [
+    "offset_differs"
+  ],
+  "url": "https://ted.europa.eu/notice/106002-2025",
+  "deadlineTime": "12:00:00+02:00"
+}
