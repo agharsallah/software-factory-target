@@ -1,0 +1,31 @@
+{
+  "noticeId": "107002-2025",
+  "title": "Synthetic vis-dangling-pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000107-aaaa-4aaa-8aaa-000000000107",
+  "noticeVersion": "02",
+  "publicationNumber": "107002-2025",
+  "procedureIdentifier": "vis-dangling-pointer",
+  "changeNoticeVersionIdentifier": "999107-2025",
+  "caseTags": [
+    "dangling_pointer"
+  ],
+  "url": "https://ted.europa.eu/notice/107002-2025"
+}

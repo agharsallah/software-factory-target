@@ -1,0 +1,33 @@
+{
+  "noticeId": "112001-2026",
+  "title": "Synthetic hold-lot-removed",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    },
+    {
+      "id": "LOT-002",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "00000112-aaaa-4aaa-8aaa-000000000112",
+  "noticeVersion": "01",
+  "publicationNumber": "112001-2026",
+  "procedureIdentifier": "hold-lot-removed",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/112001-2026"
+}

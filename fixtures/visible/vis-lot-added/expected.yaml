@@ -1,0 +1,8 @@
+change: change.json
+events:
+- lot: LOT-001
+  previous: '2024-05-01'
+  current: '2024-05-01'
+- lot: LOT-002
+  previous: null
+  current: '2024-05-15'

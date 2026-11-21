@@ -1,0 +1,30 @@
+{
+  "noticeId": "105001-2025",
+  "title": "Synthetic vis-date-without-time",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "00000105-aaaa-4aaa-8aaa-000000000105",
+  "noticeVersion": "01",
+  "publicationNumber": "105001-2025",
+  "procedureIdentifier": "vis-date-without-time",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/105001-2025",
+  "deadlineTime": "12:00:00+01:00"
+}

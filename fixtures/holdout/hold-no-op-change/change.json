@@ -1,0 +1,31 @@
+{
+  "noticeId": "114002-2026",
+  "title": "Synthetic hold-no-op-change",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": "cor-buy",
+  "changeReason": null,
+  "noticeIdentifier": "00000114-aaaa-4aaa-8aaa-000000000114",
+  "noticeVersion": "02",
+  "publicationNumber": "114002-2026",
+  "procedureIdentifier": "hold-no-op-change",
+  "changeNoticeVersionIdentifier": "114001-2026",
+  "caseTags": [
+    "no_op_change"
+  ],
+  "url": "https://ted.europa.eu/notice/114002-2026"
+}

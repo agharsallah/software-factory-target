@@ -1,0 +1,31 @@
+{
+  "noticeId": "104002-2025",
+  "title": "Synthetic vis-no-op-change",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": "none",
+  "changeReason": null,
+  "noticeIdentifier": "00000104-aaaa-4aaa-8aaa-000000000104",
+  "noticeVersion": "02",
+  "publicationNumber": "104002-2025",
+  "procedureIdentifier": "vis-no-op-change",
+  "changeNoticeVersionIdentifier": "104001-2025",
+  "caseTags": [
+    "no_op_change"
+  ],
+  "url": "https://ted.europa.eu/notice/104002-2025"
+}

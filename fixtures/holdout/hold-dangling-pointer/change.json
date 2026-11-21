@@ -1,0 +1,31 @@
+{
+  "noticeId": "117002-2026",
+  "title": "Synthetic hold-dangling-pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000117-aaaa-4aaa-8aaa-000000000117",
+  "noticeVersion": "02",
+  "publicationNumber": "117002-2026",
+  "procedureIdentifier": "hold-dangling-pointer",
+  "changeNoticeVersionIdentifier": "999117-2026",
+  "caseTags": [
+    "dangling_pointer"
+  ],
+  "url": "https://ted.europa.eu/notice/117002-2026"
+}

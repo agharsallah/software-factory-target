@@ -1,0 +1,31 @@
+{
+  "noticeId": "119002-2026",
+  "title": "Synthetic hold-duplicate-delivery",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000119-aaaa-4aaa-8aaa-000000000119",
+  "noticeVersion": "02",
+  "publicationNumber": "119002-2026",
+  "procedureIdentifier": "hold-duplicate-delivery",
+  "changeNoticeVersionIdentifier": "119001-2026",
+  "caseTags": [
+    "duplicate_delivery"
+  ],
+  "url": "https://ted.europa.eu/notice/119002-2026"
+}
