@@ -81,28 +81,28 @@ Tests live under `tests/` and are parametrized over JSON fixtures in `fixtures/c
 
 ## Insights
 
-Factory metrics for the last 30 days, as of 2026-11-20T17:46 UTC. 3 PRs merged since the last refresh.
+Factory metrics for the last 30 days, as of 2026-11-21T01:30 UTC. 3 PRs merged since the last refresh.
 
 | Metric | Value |
 | --- | --- |
-| prs_merged | 12 |
+| prs_merged | 15 |
 | pr_lead_time_h | 0.01 |
 | merge_rate | 1.0 |
 | ci_success_rate | 1.0 |
 | change_failure_rate | 0.0 |
-| stories_open | 23 |
-| stories_closed | 12 |
-| story_cycle_h | 0.32 |
+| stories_open | 31 |
+| stories_closed | 15 |
+| story_cycle_h | 0.4 |
 | automation_share | 1.0 |
-| spend_today_usd | 101.7079 |
+| spend_today_usd | 18.0319 |
 
 ## Conformance runner
 
 Run it against either split (offline, no network calls):
 
 ```bash
-uv run python -m src.ted_watch.conformance --fixtures fixtures/visible
-uv run python -m src.ted_watch.conformance --fixtures fixtures/holdout
+uv run python -m ted_watch.conformance --fixtures fixtures/visible
+uv run python -m ted_watch.conformance --fixtures fixtures/holdout
 ```
 
 `fixtures/visible/` and `fixtures/holdout/` group notices by procedure-identifier. A change and its predecessor stay on the same side, and each §3.4 case tag appears in both sets. The flat connector fixtures remain usable.
