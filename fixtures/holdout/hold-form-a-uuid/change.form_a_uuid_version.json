@@ -1,0 +1,33 @@
+{
+  "noticeId": "820002-2024",
+  "title": "Network operations centre — deadline correction",
+  "noticeType": "contract",
+  "publicationDate": "2024-06-18",
+  "deadline": "2024-08-22",
+  "country": "AT",
+  "authorityName": "Bundesministerium für Finanzen",
+  "authorityCity": "Wien",
+  "authorityCountry": "AT",
+  "cpvCodes": [
+    "72267000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-08-22",
+      "deadlineChangeReasonCode": "cor-buy",
+      "deadlineChangeReason": "Correction of buyer information"
+    }
+  ],
+  "changeReasonCode": "cor-buy",
+  "changeReason": "Correction of buyer information",
+  "noticeIdentifier": "e6f24cac-2222-4222-8222-222222222221",
+  "noticeVersion": "02",
+  "publicationNumber": "820002-2024",
+  "procedureIdentifier": "hold-form-a-uuid",
+  "changeNoticeVersionIdentifier": "e6f24cac-2222-4222-8222-222222222221-01",
+  "caseTags": [
+    "form_a_uuid_version"
+  ],
+  "url": "https://ted.europa.eu/notice/820002-2024"
+}

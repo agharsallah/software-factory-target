@@ -55,7 +55,7 @@ _LOT_ARRAY_FIELDS: tuple[tuple[str, tuple[str, ...]], ...] = (
 )
 
 
-def _parse_date(value: Any) -> date | None:
+def _parse_date(value: object) -> date | None:
     """Parse date from various formats used in TED API."""
     if value is None:
         return None
@@ -68,6 +68,15 @@ def _parse_date(value: Any) -> date | None:
         except ValueError:
             return None
     return None
+
+
+def _optional_str(value: object) -> str | None:
+    """Return ``value`` as a string, or ``None`` when absent."""
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return value
+    return str(value)
 
 
 def _texts(value: Any) -> list[str]:
@@ -142,7 +151,9 @@ def _lot_array_unknowns(raw: RawNotice) -> list[dict[str, str]]:
     return [{"kind": "lot-arrays", "value": signature}]
 
 
-def _parse_lots(raw_lots: list[dict]) -> tuple[list[LotDeadline], list[dict[str, str]]]:
+def _parse_lots(
+    raw_lots: list[dict[str, object]],
+) -> tuple[list[LotDeadline], list[dict[str, str]]]:
     """Extract lot deadlines and any unrecognised per-lot reason codes."""
     result: list[LotDeadline] = []
     unknowns: list[dict[str, str]] = []
@@ -165,8 +176,10 @@ def _parse_lots(raw_lots: list[dict]) -> tuple[list[LotDeadline], list[dict[str,
             LotDeadline(
                 lot_id=str(lot_id),
                 deadline=deadline,
-                deadline_change_reason_code=_lot_reason_code(lot),
-                deadline_change_reason=lot.get("deadlineChangeReason") or lot.get("changeReason"),
+                deadline_change_reason_code=_optional_str(_lot_reason_code(lot)),
+                deadline_change_reason=_optional_str(
+                    lot.get("deadlineChangeReason") or lot.get("changeReason")
+                ),
             )
         )
     return result, unknowns

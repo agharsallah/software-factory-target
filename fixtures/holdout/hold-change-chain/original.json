@@ -1,0 +1,29 @@
+{
+  "noticeId": "820060-2024",
+  "title": "Identity platform — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-02-11",
+  "deadline": "2024-04-15",
+  "country": "CZ",
+  "authorityName": "Ministerstvo vnitra",
+  "authorityCity": "Praha",
+  "authorityCountry": "CZ",
+  "cpvCodes": [
+    "72260000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-04-15"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "eeeeeeee-2222-4222-8222-222222222220",
+  "noticeVersion": "01",
+  "publicationNumber": "820060-2024",
+  "procedureIdentifier": "hold-change-chain",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/820060-2024"
+}

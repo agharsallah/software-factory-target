@@ -1,0 +1,33 @@
+{
+  "noticeId": "820021-2024",
+  "title": "Laboratory equipment — publication pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-24",
+  "deadline": "2024-07-03",
+  "country": "PT",
+  "authorityName": "Ministério da Saúde",
+  "authorityCity": "Lisboa",
+  "authorityCountry": "PT",
+  "cpvCodes": [
+    "33140000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-07-03",
+      "deadlineChangeReasonCode": "update-add",
+      "deadlineChangeReason": "Additional information"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": "Additional information",
+  "noticeIdentifier": "aaaaaaaa-2222-4222-8222-222222222222",
+  "noticeVersion": "01",
+  "publicationNumber": "820021-2024",
+  "procedureIdentifier": "hold-form-b-publication",
+  "changeNoticeVersionIdentifier": "719296-2026",
+  "caseTags": [
+    "form_b_publication_number"
+  ],
+  "url": "https://ted.europa.eu/notice/820021-2024"
+}

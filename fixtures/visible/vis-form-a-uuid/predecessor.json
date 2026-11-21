@@ -1,0 +1,29 @@
+{
+  "noticeId": "810001-2024",
+  "title": "IT services framework — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-03-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Bundesministerium des Innern",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "e6f24cac-1111-4111-8111-111111111111",
+  "noticeVersion": "01",
+  "publicationNumber": "810001-2024",
+  "procedureIdentifier": "vis-form-a-uuid",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810001-2024"
+}

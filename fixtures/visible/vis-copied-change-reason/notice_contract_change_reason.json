@@ -1,0 +1,30 @@
+{
+  "noticeId": "555666-2024",
+  "title": "Supply of medical equipment - deadline correction",
+  "noticeType": "contract",
+  "publicationDate": "2024-02-10",
+  "deadline": "2024-04-30",
+  "country": "IT",
+  "authorityName": "Azienda Ospedaliera Universitaria",
+  "authorityCity": "Roma",
+  "authorityCountry": "IT",
+  "cpvCodes": [
+    "33100000",
+    "33140000"
+  ],
+  "lots": [
+    {
+      "lotId": "LOT-A",
+      "submissionDeadline": "2024-04-30",
+      "changeReasonCode": "COR",
+      "changeReason": "Correction of erroneous deadline"
+    }
+  ],
+  "changeReasonCode": "COR",
+  "changeReason": "Correction of erroneous deadline",
+  "url": "https://ted.europa.eu/notice/555666-2024",
+  "procedureIdentifier": "vis-copied-change-reason",
+  "caseTags": [
+    "no_pointer"
+  ]
+}

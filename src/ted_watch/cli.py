@@ -8,6 +8,8 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
+from .core.dedupe import event_id
+from .core.diff import diff_notices
 from .core.map import map_raw_to_notice
 from .core.model import RawNotice
 
@@ -126,66 +128,92 @@ def _matches_dates(notice: Any, since: str | None, until: str | None) -> bool:
     return True
 
 
-def _event_type_for(reason_code: str | None) -> str:
-    code = (reason_code or "").strip().lower()
-    if "susp" in code:
-        return "suspension"
-    if "cancel" in code:
-        return "cancellation"
-    return "deadline_change"
-
-
 def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
-    events: list[dict[str, Any]] = []
+    """Build events sorted by (publication, lot, kind), one per logical change."""
+    tagged: list[tuple[tuple[str, str, str, str], dict[str, Any]]] = []
+    seen: set[str] = set()
     for notice in notices:
-        reason_code = notice.change_reason_code
-        event_type = _event_type_for(reason_code)
-        kind = reason_code if reason_code is not None else "none"
-
-        if notice.lots:
-            for lot in notice.lots:
-                lot_reason = lot.deadline_change_reason_code
-                lot_kind = lot_reason if lot_reason is not None else kind
-                if lot_kind is None or str(lot_kind).strip().lower() == "none":
-                    continue
-                lot_event_type = _event_type_for(
-                    lot_reason if lot_reason is not None else reason_code
-                )
-                current = lot.deadline
-                if current is None:
-                    continue
-                events.append(
-                    {
-                        "event": lot_event_type,
-                        "kind": lot_kind,
-                        "lot": lot.lot_id,
-                        "previous": None,
-                        "current": current.isoformat() if current is not None else None,
-                        "current_utc": (
-                            current.isoformat() + "T00:00:00Z" if current is not None else None
-                        ),
-                        "source": notice.url if notice.url else "ted.europa.eu",
-                        "coverage": "EU tenders",
-                        "attribution": "TED (ted.europa.eu)",
-                    }
-                )
-        elif notice.deadline is not None:
-            if kind is None or str(kind).strip().lower() == "none":
+        events = _notice_events(notice)
+        for event in events:
+            sort_key = (
+                notice.publication_date.isoformat(),
+                str(event.get("lot") or ""),
+                str(event.get("kind") or ""),
+                json.dumps(event, sort_keys=True, ensure_ascii=False, default=str),
+            )
+            identity = event_id(
+                {
+                    **event,
+                    "procedure": notice.procedure_identifier,
+                    "current_notice": notice.publication_number or notice.notice_id,
+                }
+            )
+            if identity in seen:
                 continue
-            current = notice.deadline
+            seen.add(identity)
+            tagged.append((sort_key, event))
+    tagged.sort(key=lambda item: item[0])
+    return [event for _, event in tagged]
+
+
+def _notice_events(notice: Any) -> list[dict[str, Any]]:
+    events: list[dict[str, Any]] = []
+    # susp-review / cancel-intent are procedure events, never deadline rows.
+    procedure_events = diff_notices(
+        None,
+        notice,
+        coverage="EU tenders",
+        attribution="TED (ted.europa.eu)",
+    )
+    if procedure_events:
+        for procedure_event in procedure_events:
+            events.append(dict(procedure_event))
+        return events
+
+    reason_code = notice.change_reason_code
+    kind = reason_code if reason_code is not None else "none"
+
+    if notice.lots:
+        for lot in notice.lots:
+            lot_reason = lot.deadline_change_reason_code
+            lot_kind = lot_reason if lot_reason is not None else kind
+            if lot_kind is None or str(lot_kind).strip().lower() == "none":
+                continue
+            current = lot.deadline
+            if current is None:
+                continue
             events.append(
                 {
-                    "event": event_type,
-                    "kind": kind,
-                    "lot": None,
+                    "event": "deadline_change",
+                    "kind": lot_kind,
+                    "lot": lot.lot_id,
                     "previous": None,
-                    "current": current.isoformat(),
-                    "current_utc": current.isoformat() + "T00:00:00Z",
+                    "current": current.isoformat() if current is not None else None,
+                    "current_utc": (
+                        current.isoformat() + "T00:00:00Z" if current is not None else None
+                    ),
                     "source": notice.url if notice.url else "ted.europa.eu",
                     "coverage": "EU tenders",
                     "attribution": "TED (ted.europa.eu)",
                 }
             )
+    elif notice.deadline is not None:
+        if kind is None or str(kind).strip().lower() == "none":
+            return events
+        current = notice.deadline
+        events.append(
+            {
+                "event": "deadline_change",
+                "kind": kind,
+                "lot": None,
+                "previous": None,
+                "current": current.isoformat(),
+                "current_utc": current.isoformat() + "T00:00:00Z",
+                "source": notice.url if notice.url else "ted.europa.eu",
+                "coverage": "EU tenders",
+                "attribution": "TED (ted.europa.eu)",
+            }
+        )
     return events
 
 

@@ -1,0 +1,29 @@
+{
+  "noticeId": "810111-2024",
+  "title": "Laboratory supplies — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-02",
+  "deadline": "2024-06-01",
+  "country": "SE",
+  "authorityName": "Synthetic Health Authority",
+  "authorityCity": "Stockholm",
+  "authorityCountry": "SE",
+  "cpvCodes": [
+    "33600000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-06-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "22222222-2222-4222-8222-222222222201",
+  "noticeVersion": "01",
+  "publicationNumber": "810111-2024",
+  "procedureIdentifier": "vis-cancel-intent",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810111-2024"
+}

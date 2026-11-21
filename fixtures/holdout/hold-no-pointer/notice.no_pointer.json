@@ -1,0 +1,26 @@
+{
+  "noticeId": "820051-2024",
+  "title": "Planning notice with no change pointer",
+  "noticeType": "planning",
+  "publicationDate": "2024-06-14",
+  "deadline": null,
+  "country": "DK",
+  "authorityName": "Digitaliseringsstyrelsen",
+  "authorityCity": "København",
+  "authorityCountry": "DK",
+  "cpvCodes": [
+    "72000000"
+  ],
+  "lots": [],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "dddddddd-2222-4222-8222-222222222222",
+  "noticeVersion": "01",
+  "publicationNumber": "820051-2024",
+  "procedureIdentifier": "hold-no-pointer",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [
+    "no_pointer"
+  ],
+  "url": "https://ted.europa.eu/notice/820051-2024"
+}

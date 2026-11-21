@@ -1,0 +1,32 @@
+{
+  "noticeId": "110002-2025",
+  "title": "Synthetic vis-out-of-order-delivery",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000110-aaaa-4aaa-8aaa-000000000110",
+  "noticeVersion": "02",
+  "publicationNumber": "110002-2025",
+  "procedureIdentifier": "vis-out-of-order-delivery",
+  "changeNoticeVersionIdentifier": "110001-2025",
+  "caseTags": [
+    "out_of_order_delivery"
+  ],
+  "url": "https://ted.europa.eu/notice/110002-2025",
+  "deliverySequence": 1
+}

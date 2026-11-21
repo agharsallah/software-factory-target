@@ -1,0 +1,29 @@
+{
+  "noticeId": "111001-2026",
+  "title": "Synthetic hold-lot-added",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-01",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "00000111-aaaa-4aaa-8aaa-000000000111",
+  "noticeVersion": "01",
+  "publicationNumber": "111001-2026",
+  "procedureIdentifier": "hold-lot-added",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/111001-2026"
+}
