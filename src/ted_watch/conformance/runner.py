@@ -204,6 +204,16 @@ def run(fixtures: str | Path) -> int:
     if grouping_error is not None:
         print(f"conformance: {grouping_error}", file=sys.stderr)
         return 1
+    from .replay import replay_check
+
+    try:
+        failures = replay_check(path)
+    except Exception as exc:  # noqa: BLE001
+        failures = [f"replay failed: {exc}"]
+    if failures:
+        for failure in failures:
+            print(f"conformance: replay: {failure}", file=sys.stderr)
+        return 1
     procedures = procedure_identifiers(path)
     tags = case_tags(path)
     tag_text = ",".join(sorted(tags)) if tags else "-"

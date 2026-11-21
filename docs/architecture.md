@@ -95,3 +95,5 @@ Other offline checks, not part of that list:
 - `tests/core/test_diff.py` checks `susp-review` and `cancel-intent` fixtures under `fixtures/visible/`.
 
 No property tests. No schema validator for the JSONL event beyond the `Event` TypedDict in `dedupe.py`.
+
+`core/pipeline.py` (`run_pipeline`) chains map, link, diff and dedupe over raw notices, offline and pure; the conformance replay check drives it.

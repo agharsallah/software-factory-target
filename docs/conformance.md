@@ -18,4 +18,4 @@ The cases that exist today are link-resolution cases in `tests/core/test_link.py
 
 Map, source-loader, and dedupe checks live under `tests/core/` as well. They are not conformance-package cases.
 
-Not covered anywhere: a conformance runner, property tests, and an event-schema check beyond the `Event` TypedDict.
+The runner also replays every procedure through `core.pipeline` in original, reversed, seeded-shuffled (seeds 0, 1, 7, 42) and doubled delivery order, and requires the same event ids with no duplicates (`conformance/replay.py`). Not covered anywhere: property tests and an event-schema check beyond the `Event` TypedDict.
