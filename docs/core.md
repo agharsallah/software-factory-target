@@ -19,6 +19,15 @@ Pure mapping from raw TED API data to internal models. `map_raw_to_notice(raw) -
 
 Predecessor link resolution for TED notices. `resolve_predecessor(notice, index) -> Notice | None`. This is the **link** stage. See [architecture](architecture.md) for the two pointer forms and the seven covered cases. One hop per call. Not used by the CLI.
 
+## predecessors.py
+
+On-disk predecessor lookup for pointers outside the fetched window. Does not open a network connection.
+
+- `PredecessorCache(fetch, cache_path, *, index=None)` — `lookup(ref)` and `resolve(ref, index=None)` accept either pointer form (or a `Notice`). Order: cache, then the in-window index (`_from_index`), then the injected `fetch(ref) -> Notice | None`. Results, including misses, are written to a JSON cache file (atomic replace); a repeated ref does not call `fetch` again. `_coerce` turns a fetch result into a `Notice`.
+- `Unresolved` — returned when nothing resolves. `status` is `unknown`, `deadline` is always `None`; no deadline is guessed.
+
+Not used by the CLI. Tested in `tests/core/test_predecessors.py`.
+
 ## diff.py
 
 Pure diff of a predecessor notice against the current notice. `diff_notices(previous, current) -> list[Event]`. No I/O.
