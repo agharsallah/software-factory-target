@@ -8,6 +8,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
+from .core.diff import diff_notices
 from .core.map import map_raw_to_notice
 from .core.model import RawNotice
 
@@ -126,20 +127,22 @@ def _matches_dates(notice: Any, since: str | None, until: str | None) -> bool:
     return True
 
 
-def _event_type_for(reason_code: str | None) -> str:
-    code = (reason_code or "").strip().lower()
-    if "susp" in code:
-        return "suspension"
-    if "cancel" in code:
-        return "cancellation"
-    return "deadline_change"
-
-
 def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
     events: list[dict[str, Any]] = []
     for notice in notices:
+        # susp-review / cancel-intent are procedure events, never deadline rows.
+        procedure_events = diff_notices(
+            None,
+            notice,
+            coverage="EU tenders",
+            attribution="TED (ted.europa.eu)",
+        )
+        if procedure_events:
+            for procedure_event in procedure_events:
+                events.append(dict(procedure_event))
+            continue
+
         reason_code = notice.change_reason_code
-        event_type = _event_type_for(reason_code)
         kind = reason_code if reason_code is not None else "none"
 
         if notice.lots:
@@ -148,15 +151,12 @@ def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
                 lot_kind = lot_reason if lot_reason is not None else kind
                 if lot_kind is None or str(lot_kind).strip().lower() == "none":
                     continue
-                lot_event_type = _event_type_for(
-                    lot_reason if lot_reason is not None else reason_code
-                )
                 current = lot.deadline
                 if current is None:
                     continue
                 events.append(
                     {
-                        "event": lot_event_type,
+                        "event": "deadline_change",
                         "kind": lot_kind,
                         "lot": lot.lot_id,
                         "previous": None,
@@ -175,7 +175,7 @@ def _build_events(notices: list[Any]) -> list[dict[str, Any]]:
             current = notice.deadline
             events.append(
                 {
-                    "event": event_type,
+                    "event": "deadline_change",
                     "kind": kind,
                     "lot": None,
                     "previous": None,
