@@ -1,0 +1,31 @@
+{
+  "noticeId": "810061-2024",
+  "title": "Cloud hosting framework — first correction",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-22",
+  "deadline": "2024-03-20",
+  "country": "BE",
+  "authorityName": "Service Public Fédéral",
+  "authorityCity": "Bruxelles",
+  "authorityCountry": "BE",
+  "cpvCodes": [
+    "72400000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-03-20",
+      "deadlineChangeReasonCode": "cor-buy",
+      "deadlineChangeReason": "Correction of buyer information"
+    }
+  ],
+  "changeReasonCode": "cor-buy",
+  "changeReason": "Correction of buyer information",
+  "noticeIdentifier": "eeeeeeee-1111-4111-8111-111111111111",
+  "noticeVersion": "01",
+  "publicationNumber": "810061-2024",
+  "procedureIdentifier": "vis-change-chain",
+  "changeNoticeVersionIdentifier": "999999-2024",
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810061-2024"
+}

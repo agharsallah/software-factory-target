@@ -1,0 +1,31 @@
+{
+  "noticeId": "108002-2025",
+  "title": "Synthetic vis-outside-window",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000108-aaaa-4aaa-8aaa-000000000108",
+  "noticeVersion": "02",
+  "publicationNumber": "108002-2025",
+  "procedureIdentifier": "vis-outside-window",
+  "changeNoticeVersionIdentifier": "108777-2019",
+  "caseTags": [
+    "predecessor_outside_window"
+  ],
+  "url": "https://ted.europa.eu/notice/108002-2025"
+}

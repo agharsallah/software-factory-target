@@ -18,9 +18,11 @@ No TED or EU logos are used.
 - `core/map.py` — pure `map_raw_to_notice`. No network, no side effects.
 - `core/link.py` — `resolve_predecessor` for both TED pointer forms (UUID+version and publication number), one hop per call.
 - `core/diff.py` — `diff_notices` emits `procedure_suspended` for `susp-review` and `cancellation_intended` for `cancel-intent`. Never `deadline_changed`. No personal data.
+- `core/predecessors.py` — `PredecessorCache` resolves a pointer in either form from an index, then an injected `fetch`, and keeps an on-disk JSON cache (hits and misses). An unresolved pointer returns `Unresolved` (status `unknown`, no deadline). No network code.
 - `core/dedupe.py` — stable `event_id` and an exactly-once `Dedupe` store. Identity is procedure, lot, kind, previous notice, current notice. Deadlines are not part of the id.
 - `core/source.py` — `load_source` reads `connectors/ted_api/source.yaml` with a safe YAML loader and rejects missing required keys.
 - `cli.py` — fixture mode: load JSON, map, filter, write JSONL. `susp-review` and `cancel-intent` go through `diff_notices`. Other rows are deadline changes with `previous` always null. It does not call link, dedupe, or `load_source`.
+- `conformance/` — `runner.py` loads a fixture file or directory (flat, or grouped by procedure), checks every notice maps and procedure directories match their identifiers, and reports procedures and §3.4 case tags. `uv run python -m ted_watch.conformance --fixtures <dir>`.
 - `tenders/` — thin entry that calls the same CLI.
 
 ### What is next
@@ -30,7 +32,8 @@ Named by the pipeline and by `source.yaml`, and not in the tree yet:
 - **list** and **fetch** of the TED search API. `source.yaml` records the endpoint, iteration-token paging, and the polite budget. No HTTP client exists.
 - **deadline compare** in diff for the other reason codes (`update-add`, `cor-buy`, `cor-pub`, `info-release`). Suspension and intended cancellation already have their own events.
 - Calling link resolution and dedupe from the event path.
-- A conformance kit under `conformance/`. That package is a docstring only.
+- Conformance checks beyond loading and reporting (the runner does not yet resolve links or compare events).
+- Wiring `PredecessorCache` to a real fetch.
 
 ## Quickstart
 
@@ -62,9 +65,9 @@ Every top-level module under `src/`. Nothing else is a product module.
 
 - `ted_watch/` — EU tender deadline-change watch package (`__version__` 0.1.0).
 - `connectors/` — connectors package for external API integrations. The only connector is `connectors/ted_api/` (source metadata in `source.yaml`; no fetch code).
-- `core/` — core domain logic for tender watching: `model.py`, `map.py`, `link.py`, `diff.py`, `source.py`, `dedupe.py`.
-- `conformance/` — conformance checking for tender data. Docstring only; no cases and no checker.
-- CLI — `ted_watch/cli.py` writes a sample of deadline changes as JSONL. `tenders/` re-exports that entry point.
+- `core/` — core domain logic for tender watching: `model.py`, `map.py`, `link.py`, `diff.py`, `source.py`, `dedupe.py`, `predecessors.py`.
+- `conformance/` — conformance runner for the visible and holdout fixture sets (`runner.py`, `__main__.py`).
+- CLI — `ted_watch/cli.py` writes a sample of deadline changes as JSONL. `tenders/` re-exports that entry point (thin shim).
 
 See [docs/architecture.md](docs/architecture.md) for the deadline-change data flow.
 
@@ -74,36 +77,39 @@ See [docs/architecture.md](docs/architecture.md) for the deadline-change data fl
 uv run pytest -q
 ```
 
-Tests live under `tests/` and are parametrized over JSON fixtures in `fixtures/connectors/ted_api/fixtures/`. No live TED calls. `uv run pytest -q` does not exercise the CLI.
+Tests live under `tests/` and are parametrized over JSON fixtures in `fixtures/connectors/ted_api/fixtures/` and `fixtures/visible/`. `tests/test_conformance.py` runs the conformance runner over the visible and holdout sets. No live TED calls. `uv run pytest -q` does not exercise the CLI.
 
 ## Insights
 
-Factory metrics for the last 30 days, as of 2026-11-20T17:37 UTC.
+Factory metrics for the last 30 days, as of 2026-11-21T01:30 UTC. 3 PRs merged since the last refresh.
 
 | Metric | Value |
 | --- | --- |
-| prs_merged | 9 |
+| prs_merged | 15 |
 | pr_lead_time_h | 0.01 |
 | merge_rate | 1.0 |
 | ci_success_rate | 1.0 |
 | change_failure_rate | 0.0 |
-| stories_open | 22 |
-| stories_closed | 9 |
-| story_cycle_h | 0.34 |
+| stories_open | 31 |
+| stories_closed | 15 |
+| story_cycle_h | 0.4 |
 | automation_share | 1.0 |
-| spend_today_usd | 82.4295 |
+| spend_today_usd | 18.0319 |
 
-Run the conformance runner against either split (offline, no network calls):
+## Conformance runner
+
+Run it against either split (offline, no network calls):
+
 ```bash
-uv run python -m src.ted_watch.conformance --fixtures fixtures/visible
-uv run python -m src.ted_watch.conformance --fixtures fixtures/holdout
+uv run python -m ted_watch.conformance --fixtures fixtures/visible
+uv run python -m ted_watch.conformance --fixtures fixtures/holdout
 ```
 
 `fixtures/visible/` and `fixtures/holdout/` group notices by procedure-identifier. A change and its predecessor stay on the same side, and each §3.4 case tag appears in both sets. The flat connector fixtures remain usable.
 
 ## §3.4 Conformance cases
 
-`resolve_predecessor` handles both pointer forms. All seven cases are covered by `tests/core/test_link.py`. They are not implemented inside `conformance/`.
+`resolve_predecessor` handles both pointer forms. All seven cases are covered by `tests/core/test_link.py`. The runner in `conformance/` does not re-run them; see [docs/conformance.md](docs/conformance.md).
 
 1. **Form A — UUID + 2-digit version** (e.g. `e6f24cac-1111-2222-3333-444444444444-01`) — covered (`test_form_a_uuid_version`)
 2. **Form A — index keyed by components** (UUID + version without zero-padding, e.g. `...-1`) — covered (`test_form_a_index_keyed_by_components`)
@@ -112,6 +118,8 @@ uv run python -m src.ted_watch.conformance --fixtures fixtures/holdout
 5. **Missing predecessor** (pointer exists but target not in index → returns `None`) — covered (`test_missing_predecessor`)
 6. **No pointer** (no `change-notice-version-identifier` → returns `None`) — covered (`test_no_pointer`)
 7. **Change-of-change chain** (A→B→C, one hop per call) — covered (`test_change_of_change_chain`)
+
+`ted_watch.conformance.coverage` lists twelve §3.4 cases (the seven above plus lot added/removed, differing lot deadlines, no-op change, date without time, offset differs, dangling pointer, predecessor outside window, duplicate and out-of-order delivery). `fixtures/cases.yaml` tags each procedure, and a pytest names any case missing from the visible or holdout side.
 
 ## Rate budget
 

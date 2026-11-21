@@ -1,0 +1,31 @@
+{
+  "noticeId": "118002-2026",
+  "title": "Synthetic hold-outside-window",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-01",
+  "deadline": "2024-05-15",
+  "country": "DE",
+  "authorityName": "Synthetic Authority",
+  "authorityCity": "Berlin",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "72212000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-05-15"
+    }
+  ],
+  "changeReasonCode": "update-add",
+  "changeReason": null,
+  "noticeIdentifier": "00000118-aaaa-4aaa-8aaa-000000000118",
+  "noticeVersion": "02",
+  "publicationNumber": "118002-2026",
+  "procedureIdentifier": "hold-outside-window",
+  "changeNoticeVersionIdentifier": "118777-2019",
+  "caseTags": [
+    "predecessor_outside_window"
+  ],
+  "url": "https://ted.europa.eu/notice/118002-2026"
+}
