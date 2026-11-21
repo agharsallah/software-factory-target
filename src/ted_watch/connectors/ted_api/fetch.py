@@ -1,4 +1,4 @@
-"""TED search API request construction."""
+"""Pure request-body helper for the TED search API; makes no network calls."""
 
 from datetime import date
 
@@ -10,6 +10,7 @@ def build_search_body(
     countries: list[str],
     since: date | str,
     until: date | str,
+    limit: int = 100,
 ) -> dict[str, object]:
     """Return a TED v3 search body for the given division, countries and window.
 
@@ -19,4 +20,6 @@ def build_search_body(
     return {
         "query": build_query(cpv_division, countries, since, until),
         "fields": list(FIELDS),
+        "limit": limit,
+        "paginationMode": "ITERATION",
     }

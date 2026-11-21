@@ -49,7 +49,7 @@ class RawNotice(BaseModel):
     cpv_codes: list[str] = Field(
         default_factory=list, validation_alias="cpvCodes", description="CPV classification codes"
     )
-    lots: list[dict] = Field(default_factory=list, description="Raw lot data from API")
+    lots: list[dict[str, object]] = Field(default_factory=list, description="Raw lot data from API")
     change_reason_code: str | None = Field(
         None,
         validation_alias="changeReasonCode",
@@ -110,3 +110,60 @@ class Notice(BaseModel):
         None, description="Pointer to predecessor notice (UUID+version or publication number)"
     )
     url: str | None = Field(None, description="Link to full notice on TED")
+
+
+class SourceBudget(BaseModel):
+    """Polite request budget applied to live TED access."""
+
+    model_config = ConfigDict(extra="allow")
+
+    requests_per_minute: int = Field(..., description="Maximum requests per minute")
+    min_gap_ms: int = Field(..., description="Minimum gap between requests in milliseconds")
+
+
+class SourceAccess(BaseModel):
+    """Access settings, including the request budget this project uses."""
+
+    model_config = ConfigDict(extra="allow")
+
+    our_budget: SourceBudget = Field(..., description="Polite budget applied by this project")
+
+
+class SourceReuse(BaseModel):
+    """Reuse terms for notice data from this source."""
+
+    model_config = ConfigDict(extra="allow")
+
+    terms: str = Field(..., description="Human-readable reuse terms")
+
+
+class SourceBranding(BaseModel):
+    """Branding constraints for an unofficial client."""
+
+    model_config = ConfigDict(extra="allow")
+
+    unofficial: bool = Field(..., description="True when this project is not an official client")
+    use_logos: bool = Field(..., description="Whether source or EU logos may be used")
+
+
+class SourcePaging(BaseModel):
+    """How the source API is paged."""
+
+    model_config = ConfigDict(extra="allow")
+
+    mode: str = Field(..., description="Paging mode, for example iteration-token")
+
+
+class Source(BaseModel):
+    """Connector source of truth for attribution, budget, reuse, and redaction."""
+
+    model_config = ConfigDict(extra="allow")
+
+    id: str = Field(..., description="Connector identifier")
+    reuse: SourceReuse = Field(..., description="Reuse terms")
+    attribution: str = Field(..., description="Attribution string required on outputs")
+    coverage: str = Field(..., description="Coverage string reported on events")
+    branding: SourceBranding = Field(..., description="Branding constraints")
+    access: SourceAccess = Field(..., description="Access and request budget")
+    paging: SourcePaging = Field(..., description="Paging strategy")
+    personal_data_fields: list[str] = Field(..., description="Fields that must never be stored")

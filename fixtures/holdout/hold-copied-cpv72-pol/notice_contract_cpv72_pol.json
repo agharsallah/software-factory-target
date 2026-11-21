@@ -1,0 +1,36 @@
+{
+  "noticeId": "720001-2024",
+  "title": "IT services framework agreement",
+  "noticeType": "contract",
+  "publicationDate": "2024-03-15",
+  "deadline": "2024-05-30",
+  "country": "PL",
+  "authorityName": "Ministerstwo Cyfryzacji",
+  "authorityCity": "Warszawa",
+  "authorityCountry": "PL",
+  "cpvCodes": [
+    "72000000",
+    "72200000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-PL-1",
+      "deadline": "2024-05-30",
+      "deadlineChangeReasonCode": "EXT",
+      "deadlineChangeReason": "Extended for additional bids"
+    },
+    {
+      "id": "LOT-PL-2",
+      "deadline": "2024-06-15",
+      "deadlineChangeReasonCode": "NONE",
+      "deadlineChangeReason": "No change"
+    }
+  ],
+  "changeReasonCode": "EXT",
+  "changeReason": "Extended for additional bids",
+  "url": "https://ted.europa.eu/notice/720001-2024",
+  "procedureIdentifier": "hold-copied-cpv72-pol",
+  "caseTags": [
+    "no_pointer"
+  ]
+}

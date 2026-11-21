@@ -1,0 +1,29 @@
+{
+  "noticeId": "810060-2024",
+  "title": "Cloud hosting framework — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-08",
+  "deadline": "2024-03-01",
+  "country": "BE",
+  "authorityName": "Service Public Fédéral",
+  "authorityCity": "Bruxelles",
+  "authorityCountry": "BE",
+  "cpvCodes": [
+    "72400000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-03-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "eeeeeeee-1111-4111-8111-111111111110",
+  "noticeVersion": "01",
+  "publicationNumber": "810060-2024",
+  "procedureIdentifier": "vis-change-chain",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810060-2024"
+}

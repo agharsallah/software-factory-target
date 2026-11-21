@@ -1,0 +1,29 @@
+{
+  "noticeId": "820011-2024",
+  "title": "Bridge inspection services — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-05-04",
+  "deadline": "2024-07-01",
+  "country": "SE",
+  "authorityName": "Trafikverket",
+  "authorityCity": "Stockholm",
+  "authorityCountry": "SE",
+  "cpvCodes": [
+    "71600000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-07-01"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "e6f24cac-2222-4222-8222-333333333333",
+  "noticeVersion": "1",
+  "publicationNumber": "820011-2024",
+  "procedureIdentifier": "hold-form-a-components",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/820011-2024"
+}

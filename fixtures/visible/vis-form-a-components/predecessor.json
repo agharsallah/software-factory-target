@@ -1,0 +1,29 @@
+{
+  "noticeId": "810011-2024",
+  "title": "Road maintenance framework — original notice",
+  "noticeType": "contract",
+  "publicationDate": "2024-02-01",
+  "deadline": "2024-04-10",
+  "country": "FR",
+  "authorityName": "Ministère de l'Économie",
+  "authorityCity": "Paris",
+  "authorityCountry": "FR",
+  "cpvCodes": [
+    "45233100"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-04-10"
+    }
+  ],
+  "changeReasonCode": null,
+  "changeReason": null,
+  "noticeIdentifier": "e6f24cac-1111-4111-8111-222222222222",
+  "noticeVersion": "1",
+  "publicationNumber": "810011-2024",
+  "procedureIdentifier": "vis-form-a-components",
+  "changeNoticeVersionIdentifier": null,
+  "caseTags": [],
+  "url": "https://ted.europa.eu/notice/810011-2024"
+}

@@ -1,0 +1,33 @@
+{
+  "noticeId": "820041-2024",
+  "title": "Campus renovation — missing predecessor",
+  "noticeType": "contract",
+  "publicationDate": "2024-08-06",
+  "deadline": "2024-10-01",
+  "country": "IE",
+  "authorityName": "Office of Public Works",
+  "authorityCity": "Dublin",
+  "authorityCountry": "IE",
+  "cpvCodes": [
+    "45210000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-10-01",
+      "deadlineChangeReasonCode": "susp-review",
+      "deadlineChangeReason": "Suspended pending review"
+    }
+  ],
+  "changeReasonCode": "susp-review",
+  "changeReason": "Suspended pending review",
+  "noticeIdentifier": "cccccccc-2222-4222-8222-222222222222",
+  "noticeVersion": "02",
+  "publicationNumber": "820041-2024",
+  "procedureIdentifier": "hold-missing-predecessor",
+  "changeNoticeVersionIdentifier": "000111-2099",
+  "caseTags": [
+    "missing_predecessor"
+  ],
+  "url": "https://ted.europa.eu/notice/820041-2024"
+}

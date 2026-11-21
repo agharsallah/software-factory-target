@@ -1,0 +1,37 @@
+# Source of truth for the TED connector: reuse, attribution, budget, paging.
+# Events take attribution and coverage from this file. Fetch uses access.our_budget.
+id: ted_api
+coverage: EU tenders
+attribution: "Source: TED (ted.europa.eu), © European Union"
+reuse:
+  terms: >-
+    Reuse of TED notice data is permitted provided the source is acknowledged.
+    Do not imply endorsement by TED or the European Union.
+  licence: "Commission Decision 2011/833/EU (reuse of Commission documents)"
+  attribution_required: true
+branding:
+  unofficial: true
+  affiliated: false
+  use_logos: false
+  statement: >-
+    Unofficial. Not affiliated with TED or the European Union.
+    No TED or EU logos are used.
+access:
+  endpoint: "https://api.ted.europa.eu/v3/notices/search"
+  # Polite budget: 30/min, 1000ms gap (1 request/second).
+  our_budget:
+    requests_per_minute: 30
+    min_gap_ms: 1000
+paging:
+  mode: iteration-token
+  token_field: iterationNextToken
+personal_data_fields:
+  - contact-name
+  - buyer-contact-point
+  - organisation-person-name
+  - contact-email
+  - email
+  - touchpoint-email
+  - telephone
+  - contact-phone
+  - phone

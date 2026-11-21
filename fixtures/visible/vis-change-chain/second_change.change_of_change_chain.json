@@ -1,0 +1,33 @@
+{
+  "noticeId": "810062-2024",
+  "title": "Cloud hosting framework — change of a change",
+  "noticeType": "contract",
+  "publicationDate": "2024-02-05",
+  "deadline": "2024-04-10",
+  "country": "BE",
+  "authorityName": "Service Public Fédéral",
+  "authorityCity": "Bruxelles",
+  "authorityCountry": "BE",
+  "cpvCodes": [
+    "72400000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-04-10",
+      "deadlineChangeReasonCode": "cancel-intent",
+      "deadlineChangeReason": "Intended cancellation"
+    }
+  ],
+  "changeReasonCode": "cancel-intent",
+  "changeReason": "Intended cancellation",
+  "noticeIdentifier": "eeeeeeee-1111-4111-8111-111111111112",
+  "noticeVersion": "01",
+  "publicationNumber": "810062-2024",
+  "procedureIdentifier": "vis-change-chain",
+  "changeNoticeVersionIdentifier": "810061-2024",
+  "caseTags": [
+    "change_of_change_chain"
+  ],
+  "url": "https://ted.europa.eu/notice/810062-2024"
+}

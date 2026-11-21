@@ -1,4 +1,4 @@
-"""TED API connector for fetching tender data."""
+"""TED API connector. Source metadata lives in source.yaml."""
 
 from .fetch import build_search_body
 from .query import FIELDS, build_query

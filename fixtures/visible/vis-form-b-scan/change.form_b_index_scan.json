@@ -1,0 +1,33 @@
+{
+  "noticeId": "810031-2024",
+  "title": "Software development services — scanned pointer",
+  "noticeType": "contract",
+  "publicationDate": "2024-04-16",
+  "deadline": "2024-06-20",
+  "country": "PL",
+  "authorityName": "Ministerstwo Cyfryzacji",
+  "authorityCity": "Warszawa",
+  "authorityCountry": "PL",
+  "cpvCodes": [
+    "72200000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-06-20",
+      "deadlineChangeReasonCode": "info-release",
+      "deadlineChangeReason": "Information release"
+    }
+  ],
+  "changeReasonCode": "info-release",
+  "changeReason": "Information release",
+  "noticeIdentifier": "bbbbbbbb-1111-4111-8111-111111111112",
+  "noticeVersion": "01",
+  "publicationNumber": "810031-2024",
+  "procedureIdentifier": "vis-form-b-scan",
+  "changeNoticeVersionIdentifier": "719197-2026",
+  "caseTags": [
+    "form_b_index_scan"
+  ],
+  "url": "https://ted.europa.eu/notice/810031-2024"
+}
