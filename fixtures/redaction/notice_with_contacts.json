@@ -1,0 +1,38 @@
+{
+  "noticeId": "990001-2024",
+  "title": "Construction of new hospital wing",
+  "noticeType": "contract",
+  "publicationDate": "2024-01-15",
+  "deadline": "2024-02-28",
+  "country": "DE",
+  "authorityName": "Stadtklinikum München",
+  "authorityCity": "München",
+  "authorityCountry": "DE",
+  "cpvCodes": [
+    "45210000",
+    "45230000"
+  ],
+  "lots": [
+    {
+      "id": "LOT-001",
+      "deadline": "2024-02-28",
+      "deadlineChangeReasonCode": "EXT",
+      "deadlineChangeReason": "Extension due to clarification requests"
+    },
+    {
+      "id": "LOT-002",
+      "deadline": "2024-03-15",
+      "deadlineChangeReasonCode": "NONE",
+      "deadlineChangeReason": "No change"
+    }
+  ],
+  "changeReasonCode": "EXT",
+  "changeReason": "Extension due to clarification requests",
+  "url": "https://ted.europa.eu/notice/990001-2024",
+  "contact-name": "Jane Syntheticname",
+  "contact-email": "jane.syntheticname@example.com",
+  "telephone": "+32-2-000-0000",
+  "buyer-contact-point": "Procurement Desk, Jane Syntheticname",
+  "email": "procurement@example.com",
+  "phone": "+32-2-000-0001"
+}

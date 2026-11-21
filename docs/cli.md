@@ -31,6 +31,6 @@ uv run python -m tenders.cli --cpv-division 72 --country DE --since 2024-01-01 -
 
 `load_source` and `Dedupe` are not called. Pytest does not import this module; the skeleton test does not run it.
 
-Personal-data field names listed in `source.yaml` are not stripped here, because the CLI never reads that file. The fixture JSON does not carry those fields.
+Personal-data field names listed in `source.yaml` are not stripped here, because the CLI never reads that file. The default fixture JSON does not carry those fields; `fixtures/redaction/notice_with_contacts.json` seeds synthetic ones, and `tests/test_redaction_scan.py` checks they never reach the output.
 
 The conformance runner is a separate entry point: see [conformance](conformance.md).

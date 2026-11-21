@@ -13,12 +13,13 @@ dependencies = [
     "pyyaml>=6.0.3",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest>=8.0",
     "ruff>=0.5",
     "mypy>=1.13",
     "types-pyyaml>=6.0",
+    "hypothesis>=6.0",
 ]
 
 [tool.ruff]
