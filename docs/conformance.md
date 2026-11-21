@@ -15,6 +15,10 @@ uv run python -m ted_watch.conformance --fixtures fixtures/holdout
 
 The runner does not resolve links or compare events. It is exercised by `tests/test_conformance.py`.
 
+## Property checks
+
+`src/ted_watch/conformance/properties.py` mutates the `fixtures/connectors/ted_api/fixtures/` notices with Hypothesis (drops optional fields, shuffles lots, truncates date strings). Map must never raise on input `RawNotice` accepts. Every `diff_notices` event is checked by `validate_event` (required keys, non-empty strings); a failing event is reported as unresolved. `run_properties(max_examples=25)` is the bounded kit entry point; tests are in `tests/test_conformance_hypothesis.py`.
+
 ## Fixture split
 
 Notices are split by procedure so a change and its predecessor stay on the same side. `fixtures/visible/` has 12 procedure directories (20 notices) and `fixtures/holdout/` has 10 (16 notices). Running the runner reports all seven §3.4 tags present in both.
@@ -37,4 +41,4 @@ Fixture directories: `vis-*` and `hold-*` for each case (for example `hold-form-
 
 The runner also replays every procedure through `core.pipeline` in original, reversed, seeded-shuffled (seeds 0, 1, 7, 42) and doubled delivery order, and requires the same event ids with no duplicates (`conformance/replay.py`).
 
-Not covered: property tests and an event-schema check beyond the `Event` TypedDict.
+Not covered: a full JSON-schema check beyond `validate_event` and the `Event` TypedDict.

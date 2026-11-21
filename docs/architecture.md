@@ -103,6 +103,6 @@ Other offline checks, not part of that list:
 - `tests/core/test_dedupe.py` checks id stability, order independence, and exactly-once emit.
 - `tests/core/test_diff.py` checks `susp-review` and `cancel-intent` fixtures under `fixtures/visible/`.
 
-No property tests. No schema validator for the JSONL event beyond the `Event` TypedDict in `dedupe.py`.
+Property tests for map and diff live in `conformance/properties.py` (Hypothesis, bounded `max_examples`). Events are checked by `validate_event` there; the other event schema is the `Event` TypedDict in `dedupe.py`.
 
 `core/pipeline.py` (`run_pipeline`) chains map, link, diff and dedupe over raw notices, offline and pure; the conformance replay check drives it.
